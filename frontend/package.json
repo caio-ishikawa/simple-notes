@@ -3,15 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@codemirror/lang-markdown": "^0.19.2",
+    "@monaco-editor/react": "^4.3.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "@uiw/react-codemirror": "^4.1.0",
+    "monaco-vim": "^0.1.19",
     "react": "^17.0.2",
-    "react-codemirror": "^1.0.0",
     "react-dom": "^17.0.2",
-    "react-markdown": "^7.1.0",
+    "react-monaco-editor": "^0.45.0",
     "react-scripts": "^4.0.3",
     "web-vitals": "^1.1.2"
   },
