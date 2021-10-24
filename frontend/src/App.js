@@ -4,7 +4,6 @@ import NoteList from './components/NoteList';
 import Grid from '@mui/material/Grid';
 
 function App() {
-  const markdown = "# test"
 
   return (
     <div>
