@@ -15,16 +15,15 @@ const NoteList = () => {
     return (
         <div>
             <Box>
+                <p>test util box</p>
+            </Box>
+            <Box>
                 <List component="nav" aria-label='test'>
                     <ListItemButton onClick={(e) => handleList(e, 0)} selected={selectedIndex === 0}>
-                        <ListItemText>
-                            Test
-                        </ListItemText>
+                        <ListItemText primary="note title" secondary="date"/>
                     </ListItemButton>
                     <ListItemButton onClick={(e) => handleList(e, 1)} selected={selectedIndex === 1}>
-                        <ListItemText>
-                            Test 2
-                        </ListItemText>
+                        <ListItemText primary="note title" secondary="date"/>
                     </ListItemButton>
                 </List>
             </Box>
