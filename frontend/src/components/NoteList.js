@@ -3,6 +3,7 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { useState } from 'react';
+import NoteSearch from '../components/NoteSearch'
 
 const NoteList = () => {
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -15,9 +16,7 @@ const NoteList = () => {
     return (
         <div>
             <Box>
-                <p>test util box</p>
-            </Box>
-            <Box>
+                <NoteSearch/>
                 <List component="nav" aria-label='test'>
                     <ListItemButton onClick={(e) => handleList(e, 0)} selected={selectedIndex === 0}>
                         <ListItemText primary="note title" secondary="date"/>
