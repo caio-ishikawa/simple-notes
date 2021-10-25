@@ -64,7 +64,7 @@ router.post('/login', async (req, res) => {
         httpOnly: true
     });
 
-    res.send(user);
+    res.send(user.email);
 
 });
 

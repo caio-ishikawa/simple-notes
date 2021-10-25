@@ -1,8 +1,20 @@
 import MarkdownView from '../components/MarkdownView';
 import NoteList from '../components/NoteList';
 import Grid from '@mui/material/Grid';
+import { useHistory } from 'react-router';
+import { useEffect } from 'react';
+import Axios from 'axios';
 
 function Main() {
+  const history = useHistory();
+  const state = history.location.state;
+
+  useEffect(() => {
+    let data = { email : state};
+
+    Axios.post('http://localhost:3002/user/get_data', data)
+    .then((res) => console.log(res));
+  },[]);
 
     return (
       <div>

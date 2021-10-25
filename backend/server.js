@@ -11,7 +11,9 @@ const PORT = 3002;
 
 // ROUTES //
 const authRoutes = require('./routes/Auth');
+const userData = require('./routes/GetData');
 app.use('/auth', authRoutes);
+app.use('/user', userData);
 
 // DATABASE CONNECTION //
 mongoose.connect(secrets, (err) => {
