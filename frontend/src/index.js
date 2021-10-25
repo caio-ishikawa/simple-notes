@@ -7,14 +7,14 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 // REDUCER 
-const reducer = (state="true", action) => {
+const reducer = (state=false, action) => {
   switch(action.type) {
     case 'TRUE':
-      state = "true";
+      state = true;
       return state;
     
     case 'FALSE':
-      state = "false";
+      state = false;
       return state;
     
     default:
