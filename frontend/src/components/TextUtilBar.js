@@ -1,11 +1,11 @@
 import Box from '@mui/material/Box';
 import { makeStyles } from '@mui/styles';
-import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
-import PreviewIcon from '@mui/icons-material/Preview';
 import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { useState } from 'react';
+//import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+
 
 const useStyles = makeStyles({
     box: {
@@ -15,9 +15,18 @@ const useStyles = makeStyles({
     },
 });
 
+
 const TextUtilBar = () => {
     const classes = useStyles();
+    const dispatch = useDispatch();
+    //const reduxState = useSelector((state) => state);
     const [selected, setSelected] = useState(false);
+
+    const handleEditToggle = () => {
+        setSelected(!selected);
+        const type = selected.toString().toUpperCase();
+        dispatch({ type: type });
+    };
 
 
     return(
@@ -26,7 +35,7 @@ const TextUtilBar = () => {
                 <ToggleButton
                 value="check"
                 selected={selected}
-                onChange={() => setSelected(!selected)}
+                onChange={handleEditToggle}
                 >
                     <EditIcon/>
                 </ToggleButton>

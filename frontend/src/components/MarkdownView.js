@@ -1,10 +1,12 @@
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import Box from '@mui/material/Box';
 import TextUtilBar from '../components/TextUtilBar';
+import { useSelector } from 'react-redux';
 
 const MarkdownView = () => {
     const markdown = '# test';
+    const reduxState = useSelector((state) => state);
+    console.log(reduxState);
 
     return (
         <div>
