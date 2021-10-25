@@ -11,15 +11,22 @@ const MarkdownView = () => {
     const [text, setText] = useState('');
     console.log(reduxState);
 
+    const handleEditorMount = (editor, monaco) => {
+      editor.fontSize = "20px"
+    };
+
     return (
         <div>
           <TextUtilBar/>
           {reduxState ? 
           <Editor
-          height="100vh"
+          height="90vh"
           defaultLanguage='markdown'
+          options={{fontSize: '15px', wordWrap: 'on'}}
+          theme="vs-dark"
           defaultValue={text}
           onChange={(e) => setText(e)}
+          onMount={handleEditorMount}
           />
           :
           <ReactMarkdown

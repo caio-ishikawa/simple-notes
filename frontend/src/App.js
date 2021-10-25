@@ -2,19 +2,33 @@ import './App.css';
 import MarkdownView from './components/MarkdownView';
 import NoteList from './components/NoteList';
 import Grid from '@mui/material/Grid';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import Main from './templates/Main';
+import Homepage from './templates/Homepage';
+import Login from './templates/Login';
+import Register from './templates/Register';
 
 function App() {
 
   return (
     <div>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={4} lg={4}>
-          <NoteList/>
-        </Grid>
-        <Grid item xs={12} md={8} lg={8}>
-        <MarkdownView/>
-        </Grid>
-      </Grid>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Homepage/>
+          </Route>
+          <Route path="/notes">
+            <Main/>
+          </Route>
+          <Route path="/register">
+            <Register/>
+          </Route>
+          <Route path="/login">
+            <Login/>
+          </Route>
+        </Switch>
+      </Router>
+     
     </div>
 
   );
