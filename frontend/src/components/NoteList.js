@@ -2,12 +2,40 @@ import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NoteSearch from '../components/NoteSearch'
+import Axios from 'axios';
 
-const NoteList = () => {
+const NoteList = (props) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
+    const email = props.email;
+    const notebooks = [];
+    const notes = [];
 
+    // Gets notebook + notes data from API //
+    useEffect(() => {
+        let data = { email : email};
+        Axios.post('http://localhost:3002/user/get_data', data)
+        .then((res) => {
+            let notebook = res.data.notebooks;
+            let note = res.data.notes;
+            for (var i = 0; i < notebook.length; i++){
+                notebooks.push(notebook[i].title);
+            }
+            for (var j = 0; j < note.length; j++) {
+                notes.push(note[i].note_title);
+            }
+            console.log({notebooks, notes});
+        });
+      },[]);
+
+    const results = notebooks.map((content, idx) => {
+        return (
+            <p id={idx}>{content}</p>
+        )
+    })
+
+    // Toggles edit button //
     const handleList = (e, index) => {
         setSelectedIndex(index);
         console.log(index);
