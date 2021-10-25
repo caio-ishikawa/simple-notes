@@ -4,7 +4,7 @@ const cors      = require('cors')
 const secrets   = require('./secrets');
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: true, credentials: true}));
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 const PORT = 3002;

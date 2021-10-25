@@ -1,8 +1,5 @@
 import './App.css'; 
-import MarkdownView from './components/MarkdownView';
-import NoteList from './components/NoteList';
-import Grid from '@mui/material/Grid';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Main from './templates/Main';
 import Homepage from './templates/Homepage';
 import Login from './templates/Login';
