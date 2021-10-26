@@ -8,12 +8,13 @@ import Axios from 'axios';
 
 const NoteList = (props) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
+    const [results, setResults] = useState([]);
     const email = props.email;
     const notebooks = [];
     const notes = [];
 
     // Gets notebook + notes data from API //
-    useEffect(() => {
+    useEffect(async () => {
         let data = { email : email};
         Axios.post('http://localhost:3002/user/get_data', data)
         .then((res) => {
@@ -25,16 +26,10 @@ const NoteList = (props) => {
             for (var j = 0; j < note.length; j++) {
                 notes.push(note[i].note_title);
             }
-            console.log({notebooks, notes});
+            setResults(notebooks);
         });
       },[]);
-
-    const results = notebooks.map((content, idx) => {
-        return (
-            <p id={idx}>{content}</p>
-        )
-    })
-
+    
     // Toggles edit button //
     const handleList = (e, index) => {
         setSelectedIndex(index);
@@ -54,6 +49,13 @@ const NoteList = (props) => {
                     </ListItemButton>
                 </List>
             </Box>
+            {results.map((note) => {
+                return(
+                    <div>
+                        <p>{note}</p>
+                    </div>
+                )
+            })}
         </div>
     )
 
