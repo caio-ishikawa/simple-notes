@@ -7,55 +7,45 @@ import NoteSearch from '../components/NoteSearch'
 import Axios from 'axios';
 
 const NoteList = (props) => {
-    const [selectedIndex, setSelectedIndex] = useState(0);
     const [results, setResults] = useState([]);
     const email = props.email;
-    const notebooks = [];
-    const notes = [];
 
-    // Gets notebook + notes data from API //
-    useEffect(async () => {
-        let data = { email : email};
-        Axios.post('http://localhost:3002/user/get_data', data)
-        .then((res) => {
-            let notebook = res.data.notebooks;
-            let note = res.data.notes;
-            for (var i = 0; i < notebook.length; i++){
-                notebooks.push(notebook[i].title);
-            }
-            for (var j = 0; j < note.length; j++) {
-                notes.push(note[i].note_title);
-            }
-            setResults(notebooks);
-        });
+    // Gets notes titles from API //
+    useEffect(() => {
+        let data = {
+            email: email,
+            title: "caiotest's Notebook"
+        };
+
+        Axios.post('http://localhost:3002/user/notebook_notes', data)
+        .then((res) => setResults(res.data))
       },[]);
+
     
-    // Toggles edit button //
-    const handleList = (e, index) => {
-        setSelectedIndex(index);
-        console.log(index);
+    // Select notebooks //
+    const handleList = (note, index) => {
+        console.log(note);
+
+        // pass note title to redux //
+        // in markdownview, use useeffect function tied to redux state to fetch the content of the specific note //
+
+        // get actual note from api //
     };
 
     return (
         <div>
             <Box>
                 <NoteSearch/>
-                <List component="nav" aria-label='test'>
-                    <ListItemButton onClick={(e) => handleList(e, 0)} selected={selectedIndex === 0}>
-                        <ListItemText primary="note title" secondary="date"/>
-                    </ListItemButton>
-                    <ListItemButton onClick={(e) => handleList(e, 1)} selected={selectedIndex === 1}>
-                        <ListItemText primary="note title" secondary="date"/>
-                    </ListItemButton>
+                <List component="nav" aria-label="test">
+                    {results.map((note, idx) => {
+                        return(
+                            <ListItemButton key={idx} onClick={(idx) => handleList(note, idx)} selectedindex={idx}>
+                                <ListItemText key={idx} primary={note} secondary="date"/>
+                            </ListItemButton> 
+                        )
+                    })}
                 </List>
             </Box>
-            {results.map((note) => {
-                return(
-                    <div>
-                        <p>{note}</p>
-                    </div>
-                )
-            })}
         </div>
     )
 

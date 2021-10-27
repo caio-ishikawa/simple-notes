@@ -12,6 +12,8 @@ const PORT = 3002;
 // ROUTES //
 const authRoutes = require('./routes/Auth');
 const userData = require('./routes/GetData');
+const postData = require('./routes/PostData');
+app.use('/post', postData);
 app.use('/auth', authRoutes);
 app.use('/user', userData);
 
