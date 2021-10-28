@@ -2,8 +2,6 @@ import MarkdownView from '../components/MarkdownView';
 import NoteList from '../components/NoteList';
 import Grid from '@mui/material/Grid';
 import { useHistory } from 'react-router';
-import { useEffect } from 'react';
-import Axios from 'axios';
 
 function Main() {
   const history = useHistory();

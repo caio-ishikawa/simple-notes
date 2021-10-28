@@ -21,6 +21,7 @@ router.post('/notebook_notes', async (req, res) => {
     const notebooks = await Notebook.find({ user_email: email, title: title });
 
     if (notebooks) {
+        console.log(notebooks);
         const titles = notebooks[0].note_title;
         res.send(titles);
     } else {

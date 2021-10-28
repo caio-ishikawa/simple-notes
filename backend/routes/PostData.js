@@ -20,7 +20,7 @@ router.post('/add_note', async (req, res) => {
         res.send("No notebook found.");
     }
     if (!notebook.note_title.includes(noteTitle)) {
-        let savedNote = newNote.save();
+        let savedNote = await newNote.save();
         notebook.note_title.push(noteTitle);
         let saved = await notebook.save();
         res.send(notebook);

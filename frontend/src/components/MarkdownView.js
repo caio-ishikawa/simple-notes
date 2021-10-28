@@ -16,7 +16,7 @@ const MarkdownView = () => {
 
     return (
         <div>
-          <TextUtilBar/>
+          <TextUtilBar content={text}/>
           {reduxState ? 
           <Editor
           height="90vh"

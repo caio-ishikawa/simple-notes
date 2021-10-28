@@ -19,11 +19,11 @@ const useStyles = makeStyles({
 });
 
 
-const TextUtilBar = () => {
+const TextUtilBar = (props) => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    //const reduxState = useSelector((state) => state);
     const [selected, setSelected] = useState(false);
+    console.log(props.content)
 
     const handleEditToggle = () => {
         setSelected(!selected);
@@ -35,8 +35,8 @@ const TextUtilBar = () => {
         let data = {
             email: "caio@caiotest.com",
             notebook: "caiotest's Notebook",
-            note_title: "note_title_test2",
-            note: "wowowoowoww"
+            note_title: "note_title_test232",
+            note: props.content 
         };
         Axios.post('http://localhost:3002/post/add_note', data)
         .then((res) => console.log(res));

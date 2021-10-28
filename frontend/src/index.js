@@ -22,6 +22,7 @@ const reducer = (state=false, action) => {
   }
 };
 
+
 // STORE
 const store = createStore(reducer);
 
