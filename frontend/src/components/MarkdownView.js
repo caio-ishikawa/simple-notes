@@ -6,8 +6,16 @@ import { useState } from 'react';
 import Editor from '@monaco-editor/react';
 import { useEffect } from 'react';
 import Axios from 'axios';
+import { makeStyles } from '@mui/styles';
+
+const useStyles = makeStyles({
+  mainDiv: {
+  },
+
+})
 
 const MarkdownView = (props) => {
+    const classes = useStyles();
     const reduxEditState = useSelector((state) => state.edit);
     const reduxNoteState = useSelector((state) => state.note);
     const item = localStorage.getItem('title');
@@ -16,7 +24,7 @@ const MarkdownView = (props) => {
     const [update, setUpdate] = useState();
     const initialState = '';
 
-    // Query DB based on the redux state containing note_title, and changes default value of the markdown reader & editor (buggy) //
+    // Query DB based on the redux state containing note_title, and changes default value of the markdown reader & editor //
     useEffect(() => {
       if (item) {
         console.log(reduxNoteState.payload)
@@ -27,54 +35,58 @@ const MarkdownView = (props) => {
         Axios.post('http://localhost:3002/user/get_content', data)
         .then((res) => setText(res.data))
       } else {
-        alert('uh oh')
+        alert('uh oh');
       }
-    },[reduxNoteState]);
+      // Clears updated note state //
+      setUpdate(initialState);
+    },[item]);
 
+    // UI Settings //
     const handleEditorMount = async (editor, monaco) => {
-      editor.fontSize = "20px"
+      editor.fontSize = "20px";
     };
 
+    // Updates the text on ReactMarkdown when editing //
     const updateNote = (e) => {
-      // If localStorage('title') updates, delete update state //
       setUpdate(e);
-      console.log(update);
     };
-
+  
     return (
         <div>
-          <TextUtilBar content={text}/>
-          {reduxEditState ? 
-          <Editor
-          height="90vh"
-          defaultLanguage='markdown'
-          options={{fontSize: '15px', wordWrap: 'on'}}
-          theme="vs-dark"
-          defaultValue={update ? update : text}
-          onChange={(e) => updateNote(e)}
-          onMount={handleEditorMount}
-          />
-          :
-          <ReactMarkdown
-          children={update ? update : text}
-          components={{
-          code({node, inline, className, children, ...props}) {
-          const match = /language-(\w+)/.exec(className || '')
-          return !inline && match ? (
-            <SyntaxHighlighter
-            children={String(children).replace(/\n$/, '')}
-            language={match[1]}
+          <TextUtilBar className={classes.utilBar} content={text}/>
+          <div className={classes.mainDiv}>
+            {reduxEditState ? 
+            <Editor
+            height="90vh"
+            defaultLanguage='markdown'
+            options={{fontSize: '15px', wordWrap: 'on'}}
+            theme="vs-light"
+            defaultValue={update ? update : text}
+            onChange={(e) => updateNote(e)}
+            onMount={handleEditorMount}
             />
-              ) : (
-                <code className={className} {...props}>
-                  {children}
-                </code>
-              )
-            }
-          }}
-          />
-        }
-          <div id="editor"></div>
+            :
+            <ReactMarkdown
+            children={update ? update : text}
+            components={{
+            code({node, inline, className, children, ...props}) {
+            const match = /language-(\w+)/.exec(className || '')
+            return !inline && match ? (
+              <SyntaxHighlighter
+              children={String(children).replace(/\n$/, '')}
+              language={match[1]}
+              />
+                ) : (
+                  <code className={className} {...props}>
+                    {children}
+                  </code>
+                )
+              }
+            }}
+            />
+          }
+            <div id="editor"></div>
+          </div>
         </div>
       );
 };

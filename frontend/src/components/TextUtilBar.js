@@ -13,7 +13,11 @@ import Axios from 'axios';
 const useStyles = makeStyles({
     box: {
         padding: "1vh",
+        top: 0,
+        width: "100%",
         height: "3.66vh",
+        minHeight: "3.66vh",
+        maxHeight: "5vh",
         backgroundColor: "#EBEAEB",
     },
 });
