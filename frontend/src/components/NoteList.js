@@ -27,12 +27,7 @@ const NoteList = (props) => {
     // Select notebooks //
     const handleList = (note, index) => {
         dispatch({ type: 'NOTE_TITLE', payload: note});
-        
-
-        // pass note title to redux //
-        // in markdownview, use useeffect function tied to redux state to fetch the content of the specific note //
-
-        // get actual note from api //
+        localStorage.setItem('title', note);
     };
 
     return (

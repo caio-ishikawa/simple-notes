@@ -14,7 +14,7 @@ function Main() {
             <NoteList email={state}/>
           </Grid>
           <Grid item xs={12} md={8} lg={8}>
-          <MarkdownView/>
+          <MarkdownView email={state}/>
           </Grid>
         </Grid>
       </div>

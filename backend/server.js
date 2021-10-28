@@ -3,6 +3,10 @@ const mongoose  = require('mongoose');
 const cors      = require('cors')
 const secrets   = require('./secrets');
 
+// ALL ROUTES NEED EMAIL / USERNAME VERIFICATION FUNCTION //
+// JWT NEEDS EXPIRATION / REFRESH FUNCTION //
+// ALL PROTECTED ROUTES NEED JWT AUTH MIDDLEWARE FUNCTION //
+
 const app = express();
 app.use(cors({ origin: true, credentials: true}));
 app.use(express.urlencoded({ extended: true}));

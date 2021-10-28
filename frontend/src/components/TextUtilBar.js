@@ -28,6 +28,7 @@ const TextUtilBar = (props) => {
         setSelected(!selected);
         const type = selected.toString().toUpperCase();
         dispatch({ type: type });
+        console.log(selected);
     };
 
     const saveNotebook = () => {
