@@ -5,6 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import {combineReducers} from 'redux'
+
 
 // REDUCER 
 const reducer = (state=false, action) => {
@@ -16,15 +18,36 @@ const reducer = (state=false, action) => {
     case 'FALSE':
       state = false;
       return state;
-    
+
     default:
       return state;
   }
 };
 
+const noteReducer = (state="note", action) => {
+  switch(action.type) {
+    case 'NOTE_TITLE':
+      return {
+        ...state,
+        payload: action.payload
+      };
+
+    default:
+      return{
+        ...state,
+        payload: action.payload
+      };
+  }
+};
+
+const allReducers = combineReducers({
+  edit: reducer,
+  note: noteReducer
+});
+
 
 // STORE
-const store = createStore(reducer);
+const store = createStore(allReducers);
 
 ReactDOM.render(
   <React.StrictMode>

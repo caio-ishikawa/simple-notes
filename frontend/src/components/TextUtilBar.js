@@ -23,7 +23,6 @@ const TextUtilBar = (props) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const [selected, setSelected] = useState(false);
-    console.log(props.content)
 
     const handleEditToggle = () => {
         setSelected(!selected);

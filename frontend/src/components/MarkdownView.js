@@ -4,11 +4,18 @@ import TextUtilBar from '../components/TextUtilBar';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import Editor from '@monaco-editor/react';
+import { useEffect } from 'react';
 
 const MarkdownView = () => {
-    const reduxState = useSelector((state) => state);
+    const reduxEditState = useSelector((state) => state.edit);
+    const reduxNoteState = useSelector((state) => state.note);
     const [text, setText] = useState('');
-    console.log(reduxState);
+    console.log(reduxNoteState.payload);
+
+    useEffect(() => {
+      // query DB and get all data related to the note title //
+    },[reduxNoteState]);
+
 
     const handleEditorMount = (editor, monaco) => {
       editor.fontSize = "20px"
@@ -17,7 +24,7 @@ const MarkdownView = () => {
     return (
         <div>
           <TextUtilBar content={text}/>
-          {reduxState ? 
+          {reduxEditState ? 
           <Editor
           height="90vh"
           defaultLanguage='markdown'

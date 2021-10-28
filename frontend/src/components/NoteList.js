@@ -5,9 +5,11 @@ import ListItemText from '@mui/material/ListItemText';
 import { useState, useEffect } from 'react';
 import NoteSearch from '../components/NoteSearch'
 import Axios from 'axios';
+import { useDispatch } from 'react-redux';
 
 const NoteList = (props) => {
     const [results, setResults] = useState([]);
+    const dispatch = useDispatch();
     const email = props.email;
 
     // Gets notes titles from API //
@@ -24,7 +26,8 @@ const NoteList = (props) => {
     
     // Select notebooks //
     const handleList = (note, index) => {
-        console.log(note);
+        dispatch({ type: 'NOTE_TITLE', payload: note});
+        
 
         // pass note title to redux //
         // in markdownview, use useeffect function tied to redux state to fetch the content of the specific note //
