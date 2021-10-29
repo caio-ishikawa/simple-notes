@@ -9,7 +9,7 @@ function Main() {
 
     return (
       <div>
-        <Grid container spacing={2}>
+        <Grid container spacing={0}>
           <Grid item xs={12} md={4} lg={4}>
             <NoteList email={state}/>
           </Grid>

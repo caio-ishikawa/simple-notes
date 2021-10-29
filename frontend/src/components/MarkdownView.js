@@ -10,9 +10,18 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   mainDiv: {
+    overflow: "hidden",
+    height: "100%",
+    margin: 0,
+    background: "white"
   },
-
-})
+  barDiv: {
+    background: "#EBEAEB",
+  },
+  bar: {
+    minHeight: "3.66vh",
+  }
+});
 
 const MarkdownView = (props) => {
     const classes = useStyles();
@@ -52,8 +61,10 @@ const MarkdownView = (props) => {
     };
   
     return (
-        <div>
-          <TextUtilBar className={classes.utilBar} content={text}/>
+        <div className={classes.barDiv}>
+          <div className={classes.bar}>
+            <TextUtilBar className={classes.utilBar} content={text} title={item}/>
+          </div>
           <div className={classes.mainDiv}>
             {reduxEditState ? 
             <Editor
@@ -67,6 +78,7 @@ const MarkdownView = (props) => {
             />
             :
             <ReactMarkdown
+            className={classes.markdownView}
             children={update ? update : text}
             components={{
             code({node, inline, className, children, ...props}) {

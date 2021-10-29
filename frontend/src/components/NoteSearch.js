@@ -7,10 +7,11 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Modal from '@mui/material/Modal';
 import Typography  from '@mui/material/Typography';
 import Button  from '@mui/material/Button';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
 
 const useStyles = makeStyles({
     box: {
-        padding: "1vh",
         backgroundColor: "#EBEAEB",
     },
     addButton: {
@@ -51,17 +52,22 @@ const NoteSearch = () => {
 
     return (
         <div>
-            <Box className={classes.box}>
-                <TextField
-                id="outlined-password-input"
-                label="Search"
-                size="small"
-                className={classes.search}
-                />
-                <IconButton className={classes.addButton} onClick={handleOpen}>
-                    <AddCircleIcon color="primary"/>
-                </IconButton>
+            <Box sx={{flexGrow: 1}}>
+                <AppBar className={classes.box} elevation={0} position="static">
+                    <Toolbar variant="dense">
+                        <TextField
+                        id="outlined-password-input"
+                        label="Search"
+                        size="small"
+                        className={classes.search}
+                        />
+                        <IconButton className={classes.addButton} onClick={handleOpen}>
+                            <AddCircleIcon color="primary"/>
+                        </IconButton>
+                    </Toolbar>
+                </AppBar>
             </Box>
+          
             <Modal 
             open={open}
             onClose={handleClose}
