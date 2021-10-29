@@ -63,9 +63,7 @@ const TextUtilBar = (props) => {
         console.log(selected);
     };
 
-    // Saves notes  //
-    // IMPORTANT, THIS DOES NOT RETURN UP-TO-DATE INFO FROM BACKEND (findOneAndUpdate returns old value for some reason) BUT IT WORKS //
-    // MAKE FUNCTION TO CHANGE STATE BASED ON props.title //
+    // Saves notebook data
     const saveNotebook = () => {
         let data = {
             email: "caio@caiotest.com",

@@ -1,5 +1,6 @@
 const Note = require('../models/Note');
 const Notebook = require('../models/Notebook');
+const verifyToken = require('../middleware/verifyToken');
 
 const router        = require('express').Router();
 
@@ -38,6 +39,29 @@ router.post('/add_note', async (req, res) => {
         } else {
             res.send("Note already in notebook.");
         }
+    }
+});
+
+router.post('/new_notebook', verifyToken, async (req, res) => {
+    const email = req.body.email;
+    const title = req.body.title;
+
+    const notebookExists = await Notebook.findOne({ user_email: email, title: title});
+    
+    if (notebookExists) {
+        res.send("Notebook exists");
+    };
+
+    const newNotebook = new Notebook({
+        title: title,
+        user_email: email
+    });
+
+    try {
+        const savedNotebook = await newNotebook.save();
+        res.send(savedNotebook);
+    } catch {
+        res.send("Error creating notebook.");
     }
 });
 

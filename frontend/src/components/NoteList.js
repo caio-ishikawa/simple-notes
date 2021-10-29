@@ -39,7 +39,7 @@ const NoteList = (props) => {
 
     return (
         <div className={classes.mainDiv}>
-                <NoteSearch/>
+                <NoteSearch email={email}/>
                 <List component="nav" aria-label="test">
                     {results.map((note, idx) => {
                         return(

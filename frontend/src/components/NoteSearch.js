@@ -9,6 +9,7 @@ import Typography  from '@mui/material/Typography';
 import Button  from '@mui/material/Button';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
+import Axios from 'axios';
 
 const useStyles = makeStyles({
     box: {
@@ -40,12 +41,15 @@ const useStyles = makeStyles({
     }
 })
 
-const NoteSearch = () => {
+const NoteSearch = (props) => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
+    const [openTwo, setOpenTwo] = useState(false);
     const [noteName, setNotename] = useState('');
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const handleOpenTwo = () => setOpenTwo(true);
+    const handleCloseTwo = () => setOpenTwo(false);
 
     const getNoteName = (e) => {
         setNotename(e.target.value);
@@ -53,6 +57,12 @@ const NoteSearch = () => {
 
     const submitData = () => {
         console.log(noteName);
+        let data = {
+            email: props.email,
+            title: noteName
+        };
+        Axios.post('http://localhost:3002/post/new_notebook', data)
+        .then((res) => console.log(res))
     };
 
     return (
@@ -70,10 +80,12 @@ const NoteSearch = () => {
                         <IconButton className={classes.addButton} onClick={handleOpen}>
                             <AddCircleIcon color="primary"/>
                         </IconButton>
+                        <Button onClick={handleOpenTwo}>+</Button>
                     </Toolbar>
                 </AppBar>
             </Box>
-          
+
+            {/* NEW NOTEBOOK MODAL */}
             <Modal 
             open={open}
             onClose={handleClose}
@@ -82,10 +94,26 @@ const NoteSearch = () => {
             >
                 <Box className={classes.newNote}>
                     <Typography id="modal-modal-title" variant="h6">
-                        New note name:
+                        New notebook name:
                     </Typography>
                     <input placeholder="name" onChange={(e) => getNoteName(e)}/>
                     <Button onClick={submitData}>Submit</Button>
+                </Box>
+            </Modal>
+
+            {/* NEW NOTE MODAL */}
+            <Modal
+            open={openTwo}
+            onClose={handleCloseTwo}
+            aria-labelledby="modal-title"
+            aria-describedby="modal-desc"
+            >
+                <Box className={classes.newNote}>
+                    <Typography id="modal-title" variant="h6">
+                        New note name:
+                    </Typography>
+                    <input placeholder="note"/>
+                    <Button>Submit</Button>
                 </Box>
             </Modal>
         </div>
