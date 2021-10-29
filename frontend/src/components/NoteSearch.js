@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     },
     search: {
         maxWidth: "22vh",
-        minWidth: "10vh",
+        minWidth: "20vh",
         backgroundColor: "#FFFF",
         borderRadius: "4px",
     },
@@ -32,7 +32,12 @@ const useStyles = makeStyles({
         left: '50%',
         transform: 'translate(-50%, -50%)',
         width: 400,
-    } 
+    },
+    sep: {
+        flexGrow: '1'
+    },
+    divider: {
+    }
 })
 
 const NoteSearch = () => {
@@ -61,6 +66,7 @@ const NoteSearch = () => {
                         size="small"
                         className={classes.search}
                         />
+                        <div className={classes.sep}></div>
                         <IconButton className={classes.addButton} onClick={handleOpen}>
                             <AddCircleIcon color="primary"/>
                         </IconButton>

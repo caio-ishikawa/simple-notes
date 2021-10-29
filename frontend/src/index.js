@@ -9,7 +9,7 @@ import {combineReducers} from 'redux'
 
 
 // REDUCER 
-const reducer = (state=false, action) => {
+const reducer = (state=true, action) => {
   switch(action.type) {
     case 'TRUE':
       state = true;

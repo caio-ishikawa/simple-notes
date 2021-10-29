@@ -12,8 +12,9 @@ const useStyles = makeStyles({
   mainDiv: {
     overflow: "hidden",
     height: "100%",
-    margin: 0,
-    background: "white"
+    background: "white",
+    paddingLeft: "4vh"
+
   },
   barDiv: {
     background: "#EBEAEB",

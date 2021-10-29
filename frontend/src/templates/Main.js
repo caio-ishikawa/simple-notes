@@ -3,6 +3,7 @@ import NoteList from '../components/NoteList';
 import Grid from '@mui/material/Grid';
 import { useHistory } from 'react-router';
 
+
 function Main() {
   const history = useHistory();
   const state = history.location.state;

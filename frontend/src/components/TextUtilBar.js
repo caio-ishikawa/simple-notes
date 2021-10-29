@@ -9,6 +9,7 @@ import Axios from 'axios';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
 
 
 const useStyles = makeStyles({
@@ -28,12 +29,16 @@ const useStyles = makeStyles({
     button: {
         height: "6vh",
         width: "6vh",
+        marginLeft: "4vh"
     },
     saveButton: {
         height: "6vh",
     },
     sep: {
         flexGrow: "1"
+    },
+    divider: {
+        paddingRight: "15vh",
     }
 });
 
@@ -77,7 +82,9 @@ const TextUtilBar = (props) => {
         <div key={props.content} className={classes.divMain}>
             <Box className={classes.mainBox}>
                 <AppBar elevation={0} className={classes.box} position="static">
+                    <Divider className={classes.divider} orientation="vertical" flexItem/>
                     <Toolbar variant="dense">
+                        <Divider orientation="vertical" flexItem/>
                         <ToggleButton
                         value="check"
                         selected={selected}
