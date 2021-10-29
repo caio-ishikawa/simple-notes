@@ -28,7 +28,6 @@ const useStyles = makeStyles({
     },
     button: {
         width: "4vh",
-        marginLeft: "4vh",
         height: "3vh"
     },
     saveButton: {
@@ -37,8 +36,10 @@ const useStyles = makeStyles({
     sep: {
         flexGrow: "1"
     },
+    sep2: {
+        marginRight: "2vh"
+    },
     divider: {
-        paddingRight: "15vh",
     }
 });
 
@@ -72,7 +73,7 @@ const TextUtilBar = (props) => {
             note: content
         };
         console.log(title);
-        Axios.post('http://localhost:3002/post/add_note', data)
+        Axios.post('http://localhost:3002/post/save_note', data)
         .then((res) => console.log(res));
     };
 
@@ -80,9 +81,9 @@ const TextUtilBar = (props) => {
         <div key={props.content} className={classes.divMain}>
             <Box className={classes.mainBox}>
                 <AppBar elevation={0} className={classes.box} position="static">
-                    <Divider className={classes.divider} orientation="vertical" flexItem/>
                     <Toolbar variant="dense">
-                        <Divider orientation="vertical" flexItem/>
+                        <Divider orientation='vertical' flexItem/>
+                        <div className={classes.sep2}></div>
                         <ToggleButton
                         value="check"
                         selected={selected}

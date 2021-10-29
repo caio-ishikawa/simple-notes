@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     overflow: "hidden",
     height: "100%",
     background: "white",
-    paddingLeft: "4vh"
+    paddingLeft: "2vh"
 
   },
   barDiv: {
@@ -23,7 +23,8 @@ const useStyles = makeStyles({
     minHeight: "3.66vh",
   },
   markdownView: {
-    paddingLeft: "5vh"
+    paddingLeft: "3vh",
+    paddingRight: "3vh"
   }
 });
 

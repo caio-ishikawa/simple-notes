@@ -10,6 +10,7 @@ import Button  from '@mui/material/Button';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Axios from 'axios';
+import Divider from '@mui/material/Divider';
 
 const useStyles = makeStyles({
     box: {
@@ -70,18 +71,14 @@ const NoteSearch = (props) => {
             <Box sx={{flexGrow: 1}}>
                 <AppBar className={classes.box} elevation={0} position="static">
                     <Toolbar variant="dense">
-                        <TextField
-                        id="outlined-password-input"
-                        label="Search"
-                        size="small"
-                        className={classes.search}
-                        />
                         <div className={classes.sep}></div>
                         <IconButton className={classes.addButton} onClick={handleOpen}>
                             <AddCircleIcon color="primary"/>
                         </IconButton>
                         <Button onClick={handleOpenTwo}>+</Button>
+
                     </Toolbar>
+                    <Divider className={classes.divider} orientation="vertical" flexItem/>
                 </AppBar>
             </Box>
 

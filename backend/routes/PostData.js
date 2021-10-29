@@ -4,7 +4,8 @@ const verifyToken = require('../middleware/verifyToken');
 
 const router        = require('express').Router();
 
-router.post('/add_note', async (req, res) => {
+// SAVES NOTE //
+router.post('/save_note', async (req, res) => {
     const email = req.body.email;
     const notebookTitle = req.body.notebook;
     const noteTitle = req.body.note_title;
@@ -26,22 +27,11 @@ router.post('/add_note', async (req, res) => {
         res.send(updatedNote);
     } else {
         // If notebook does not exist, alert user //
-        if (!notebook) {
-            res.send("No notebook found.");
-        }
-
-        // If notebook does not contain this note, save as new note in notebook //
-        if (!notebook.note_title.includes(noteTitle)) {
-            let savedNote = await newNote.save();
-            notebook.note_title.push(noteTitle);
-            let saved = await notebook.save();
-            res.send(notebook);
-        } else {
-            res.send("Note already in notebook.");
-        }
+        res.send("Error: no note selected");
     }
 });
 
+//  CREATES NOTEBOOK //
 router.post('/new_notebook', verifyToken, async (req, res) => {
     const email = req.body.email;
     const title = req.body.title;
