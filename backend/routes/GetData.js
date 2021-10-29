@@ -2,8 +2,9 @@ const router            = require('express').Router();
 const User              = require('../models/User');
 const Notebook          = require('../models/Notebook');
 const Note              = require('../models/Note');
+const verifyToken       = require('../middleware/verifyToken');
 
-router.post('/get_data', async (req, res) => {
+router.post('/get_data', verifyToken, async (req, res) => {
     const email = req.body.email;
     console.log(email)
 
@@ -13,7 +14,7 @@ router.post('/get_data', async (req, res) => {
     res.send({ notebooks, notes });
 });
 
-router.post('/notebook_notes', async (req, res) => {
+router.post('/notebook_notes', verifyToken, async (req, res) => {
     const email = req.body.email;
     const title = req.body.title;
     const notebook = req.body.notebook;
@@ -29,7 +30,7 @@ router.post('/notebook_notes', async (req, res) => {
     }
 });
 
-router.post('/get_content', async (req, res) => {
+router.post('/get_content', verifyToken, async (req, res) => {
     const email = req.body.email;
     const title = req.body.title;
 

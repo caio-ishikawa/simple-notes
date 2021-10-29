@@ -1,7 +1,8 @@
-const express   = require('express');
-const mongoose  = require('mongoose');
-const cors      = require('cors')
-const secrets   = require('./secrets');
+const express       = require('express');
+const mongoose      = require('mongoose');
+const cors          = require('cors')
+const secrets       = require('./secrets');
+const cookieParser  = require('cookie-parser');
 
 // ALL ROUTES NEED EMAIL / USERNAME VERIFICATION FUNCTION //
 // JWT NEEDS EXPIRATION / REFRESH FUNCTION //
@@ -11,6 +12,7 @@ const app = express();
 app.use(cors({ origin: true, credentials: true}));
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
+app.use(cookieParser());
 const PORT = 3002;
 
 // ROUTES //
