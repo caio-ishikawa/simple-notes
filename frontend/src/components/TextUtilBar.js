@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import Axios from 'axios';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
+import { useScrollTrigger } from '@mui/material';
 
 
 const useStyles = makeStyles({
@@ -31,11 +32,13 @@ const TextUtilBar = (props) => {
     const dispatch = useDispatch();
     const [selected, setSelected] = useState(false);
     const [content, setContent] = useState('');
+    const [title, setTitle] = useState('');
 
     // Changes state based on props.content //
     useEffect(() => {
         setContent(props.content);
-    },[props.content]);
+        setTitle(props.title)
+    },[props.content, props.title]);
 
     // Toggles between edit and view mode (redux) //
     const handleEditToggle = () => {
@@ -52,10 +55,10 @@ const TextUtilBar = (props) => {
         let data = {
             email: "caio@caiotest.com",
             notebook: "caiotest's Notebook",
-            note_title: 'test title',
+            note_title: title,
             note: content
         };
-        console.log(content);
+        console.log(title);
         Axios.post('http://localhost:3002/post/add_note', data)
         .then((res) => console.log(res));
     };
