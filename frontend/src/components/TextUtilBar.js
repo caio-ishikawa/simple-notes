@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import Axios from 'axios';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import { useScrollTrigger } from '@mui/material';
+import Button from '@mui/material/Button';
 
 
 const useStyles = makeStyles({
@@ -24,6 +24,16 @@ const useStyles = makeStyles({
     },
     mainBox: {
         backgroundColor: "#EBEAEB",
+    },
+    button: {
+        height: "6vh",
+        width: "6vh",
+    },
+    saveButton: {
+        height: "6vh",
+    },
+    sep: {
+        flexGrow: "1"
     }
 });
 
@@ -71,11 +81,13 @@ const TextUtilBar = (props) => {
                         <ToggleButton
                         value="check"
                         selected={selected}
+                        className={classes.button}
                         onChange={handleEditToggle}
                         >
                             <EditIcon/>
                         </ToggleButton>
-                        <button onClick={saveNotebook}>SAVE</button>
+                        <div className={classes.sep}></div>
+                        <Button elevation={0} edge="end" className={classes.saveButton} onClick={saveNotebook} variant="contained">SAVE</Button>
                     </Toolbar>
                 </AppBar>
             </Box>

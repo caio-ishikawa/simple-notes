@@ -20,6 +20,9 @@ const useStyles = makeStyles({
   },
   bar: {
     minHeight: "3.66vh",
+  },
+  markdownView: {
+    paddingLeft: "5vh"
   }
 });
 
@@ -70,7 +73,7 @@ const MarkdownView = (props) => {
             <Editor
             height="90vh"
             defaultLanguage='markdown'
-            options={{fontSize: '15px', wordWrap: 'on'}}
+            options={{fontSize: '15px', wordWrap: 'on', lineNumbers: "off"}}
             theme="vs-light"
             defaultValue={update ? update : text}
             onChange={(e) => updateNote(e)}
