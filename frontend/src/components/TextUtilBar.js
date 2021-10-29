@@ -27,12 +27,12 @@ const useStyles = makeStyles({
         backgroundColor: "#EBEAEB",
     },
     button: {
-        height: "6vh",
-        width: "6vh",
-        marginLeft: "4vh"
+        width: "4vh",
+        marginLeft: "4vh",
+        height: "3vh"
     },
     saveButton: {
-        height: "6vh",
+        height: "3vh"
     },
     sep: {
         flexGrow: "1"

@@ -6,8 +6,15 @@ import { useState, useEffect } from 'react';
 import NoteSearch from '../components/NoteSearch'
 import Axios from 'axios';
 import { useDispatch } from 'react-redux';
+import { makeStyles } from '@mui/styles';
+
+const useStyles = makeStyles({
+    mainDiv: {
+    }
+})
 
 const NoteList = (props) => {
+    const classes = useStyles();
     const [results, setResults] = useState([]);
     const dispatch = useDispatch();
     const email = props.email;
@@ -31,8 +38,7 @@ const NoteList = (props) => {
     };
 
     return (
-        <div>
-            <Box>
+        <div className={classes.mainDiv}>
                 <NoteSearch/>
                 <List component="nav" aria-label="test">
                     {results.map((note, idx) => {
@@ -43,7 +49,6 @@ const NoteList = (props) => {
                         )
                     })}
                 </List>
-            </Box>
         </div>
     )
 
