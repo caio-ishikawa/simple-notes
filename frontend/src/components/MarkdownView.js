@@ -59,11 +59,11 @@ const MarkdownView = (props) => {
     const updateNote = (e) => {
       setUpdate(e);
     };
-  
+
     return (
         <div className={classes.barDiv}>
           <div className={classes.bar}>
-            <TextUtilBar className={classes.utilBar} content={text} title={item}/>
+            <TextUtilBar className={classes.utilBar} content={update ? update : text} title={item}/>
           </div>
           <div className={classes.mainDiv}>
             {reduxEditState ? 

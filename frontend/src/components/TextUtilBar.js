@@ -6,13 +6,8 @@ import { useState, useEffect } from 'react';
 //import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import Axios from 'axios';
-import TextField from '@mui/material/TextField';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import  Typography  from '@mui/material/Typography';
-
-
-// SAVE TO DEFAULT NOTEBOOK BUTTON //
 
 
 const useStyles = makeStyles({
@@ -29,27 +24,20 @@ const useStyles = makeStyles({
     mainBox: {
         backgroundColor: "#EBEAEB",
     }
-   
 });
-
 
 const TextUtilBar = (props) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const [selected, setSelected] = useState(false);
-    const [newTitle, setNewTitle] = useState('');
-    const [oldTitle, setOldTitle] = useState('');
+    const [content, setContent] = useState('');
 
-
+    // Changes state based on props.content //
     useEffect(() => {
-        if (props.title != oldTitle) {
-            setOldTitle(props.title);
-        } else {
-            console.log("did not change");
-        }
-    }, [props.title]);
+        setContent(props.content);
+    },[props.content]);
 
-
+    // Toggles between edit and view mode (redux) //
     const handleEditToggle = () => {
         setSelected(!selected);
         const type = selected.toString().toUpperCase();
@@ -57,25 +45,23 @@ const TextUtilBar = (props) => {
         console.log(selected);
     };
 
-    const getNewTitle = (e) => {
-        setNewTitle(e.target.value);
-        console.log(newTitle);
-    };
-
+    // Saves notes  //
+    // IMPORTANT, THIS DOES NOT RETURN UP-TO-DATE INFO FROM BACKEND (findOneAndUpdate returns old value for some reason) BUT IT WORKS //
+    // MAKE FUNCTION TO CHANGE STATE BASED ON props.title //
     const saveNotebook = () => {
         let data = {
             email: "caio@caiotest.com",
             notebook: "caiotest's Notebook",
-            note_title: newTitle ? newTitle : oldTitle,
-            note: props.content 
+            note_title: 'test title',
+            note: content
         };
+        console.log(content);
         Axios.post('http://localhost:3002/post/add_note', data)
         .then((res) => console.log(res));
     };
 
-
     return(
-        <div className={classes.divMain}>
+        <div key={props.content} className={classes.divMain}>
             <Box className={classes.mainBox}>
                 <AppBar elevation={0} className={classes.box} position="static">
                     <Toolbar variant="dense">
@@ -86,14 +72,7 @@ const TextUtilBar = (props) => {
                         >
                             <EditIcon/>
                         </ToggleButton>
-                        <button onClick={saveNotebook}>TEST</button>
-                        <TextField
-                        id="outlined-password-input"
-                        size="small"
-                        defaultValue={oldTitle}
-                        onChange={(e) => setNewTitle(e.target.value)}
-                        className={classes.search}
-                        />
+                        <button onClick={saveNotebook}>SAVE</button>
                     </Toolbar>
                 </AppBar>
             </Box>
