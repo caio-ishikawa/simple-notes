@@ -2,6 +2,8 @@ import Box from '@mui/material/Box';
 import { makeStyles } from '@mui/styles';
 import EditIcon from '@mui/icons-material/Edit';
 import ToggleButton from '@mui/material/ToggleButton';
+import DownloadIcon from '@mui/icons-material/Download';
+import IconButton from '@mui/material/IconButton';
 import { useState, useEffect } from 'react';
 //import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -77,6 +79,18 @@ const TextUtilBar = (props) => {
         .then((res) => console.log(res));
     };
 
+    // Downloads current note as .txt //
+    const downloadFile = () => {
+        console.log(typeof content)
+        const element = document.createElement('a');
+        const file = new Blob([content], {type: 'text/plain'});
+        element.href = URL.createObjectURL(file);
+        element.download = title + '.txt';
+        document.body.appendChild(element);
+        element.click();
+
+    };
+
     return(
         <div key={props.content} className={classes.divMain}>
             <Box className={classes.mainBox}>
@@ -92,6 +106,9 @@ const TextUtilBar = (props) => {
                         >
                             <EditIcon/>
                         </ToggleButton>
+                        <IconButton className={classes.button} onClick={downloadFile}>
+                            <DownloadIcon/>
+                        </IconButton>
                         <div className={classes.sep}></div>
                         <Button elevation={0} edge="end" className={classes.saveButton} onClick={saveNotebook} variant="contained">SAVE</Button>
                     </Toolbar>
