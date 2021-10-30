@@ -9,6 +9,9 @@ services:
       - 3000:3000
     networks:
       - mern-network
+    volumes:
+      - ./frontend/src:/usr/app/src
+      - ./frontend/public:/usr/app/public
     depends_on:
       - server
     environment:

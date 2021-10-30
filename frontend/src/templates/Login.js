@@ -37,6 +37,7 @@ const Login = () => {
             <input placeholder="username" onChange={(e) => getUsername(e)}/>
             <input placeholder="password" onChange={(e) => getPassword(e)}/>
             <button onClick={submitData}>Submit</button>
+            <p>test2</p>
         </div>
     )
 };
