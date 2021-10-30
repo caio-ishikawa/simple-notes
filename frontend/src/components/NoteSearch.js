@@ -11,6 +11,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Axios from 'axios';
 import Divider from '@mui/material/Divider';
+import SideMenu from './SideMenu';
 
 const useStyles = makeStyles({
     box: {
@@ -71,6 +72,7 @@ const NoteSearch = (props) => {
             <Box sx={{flexGrow: 1}}>
                 <AppBar className={classes.box} elevation={0} position="static">
                     <Toolbar variant="dense">
+                        <SideMenu email={props.email}/>
                         <div className={classes.sep}></div>
                         <IconButton className={classes.addButton} onClick={handleOpen}>
                             <AddCircleIcon color="primary"/>

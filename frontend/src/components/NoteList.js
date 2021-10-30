@@ -5,7 +5,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { useState, useEffect } from 'react';
 import NoteSearch from '../components/NoteSearch'
 import Axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@mui/styles';
 import Divider from '@mui/material/Divider';
 
@@ -21,7 +21,10 @@ const NoteList = (props) => {
     const classes = useStyles();
     const [results, setResults] = useState([]);
     const dispatch = useDispatch();
+    const reduxNotebook = useSelector((state) => state.notebook);
     const email = props.email;
+
+    console.log(reduxNotebook);
 
     // Gets notes titles from API //
     useEffect(() => {

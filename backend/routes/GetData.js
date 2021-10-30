@@ -4,6 +4,7 @@ const Notebook          = require('../models/Notebook');
 const Note              = require('../models/Note');
 const verifyToken       = require('../middleware/verifyToken');
 
+// RETURNS USER'S NOTEBOOKS + NOTES //
 router.post('/get_data', verifyToken, async (req, res) => {
     const email = req.body.email;
     console.log(email)
@@ -14,6 +15,7 @@ router.post('/get_data', verifyToken, async (req, res) => {
     res.send({ notebooks, notes });
 });
 
+// RETURNS SPECIFIC NOTEBOOK'S CONTENT //
 router.post('/notebook_notes', verifyToken, async (req, res) => {
     const email = req.body.email;
     const title = req.body.title;
@@ -30,6 +32,7 @@ router.post('/notebook_notes', verifyToken, async (req, res) => {
     }
 });
 
+// RETURNS SPECIFIC NOTE //
 router.post('/get_content', verifyToken, async (req, res) => {
     const email = req.body.email;
     const title = req.body.title;
@@ -44,6 +47,22 @@ router.post('/get_content', verifyToken, async (req, res) => {
     }
 });
 
+// RETURNS USER'S NOTEBOOK TITLES //
+router.post('/get_notebook_title', async (req, res) => {
+    const email = req.body.email;
+
+    const notebooks = await Notebook.find({ user_email: email });
+    let data = [];
+
+    if (notebooks){
+        for (var i = 0; i < notebooks.length; i++) {
+            data.push(notebooks[i].title);
+        }
+        res.send(data);
+    } else {
+        res.send("No notebooks found. Please ensure you are signed in.");
+    }
+});
 
 
 module.exports = router;

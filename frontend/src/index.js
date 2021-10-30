@@ -40,9 +40,26 @@ const noteReducer = (state="note", action) => {
   }
 };
 
+const notebookReducer = (state="title", action) => {
+  switch(action.type) {
+    case 'NOTEBOOK_TITLE':
+      return {
+        ...state,
+        payload: action.payload
+      };
+
+      default: 
+      return {
+        ...state,
+        payload: action.payload
+      };
+  }
+};
+
 const allReducers = combineReducers({
   edit: reducer,
-  note: noteReducer
+  note: noteReducer,
+  notebook: notebookReducer
 });
 
 
