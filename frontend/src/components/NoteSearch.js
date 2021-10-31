@@ -37,10 +37,14 @@ const useStyles = makeStyles({
         width: 400,
     },
     sep: {
-        flexGrow: '1'
+        flexGrow: 1
+    },
+    add: {
+        flexGrow: 1,
+        marginLeft: "2vh"
     },
     divider: {
-    }
+    },
 })
 
 const NoteSearch = (props) => {
@@ -70,14 +74,17 @@ const NoteSearch = (props) => {
     return (
         <div>
             <Box sx={{flexGrow: 1}}>
-                <AppBar className={classes.box} elevation={0} position="static">
+                <AppBar style={{ backgroundColor: "#EBEAEB" }} className={classes.box} elevation={0} position="static">
                     <Toolbar variant="dense">
-                        <SideMenu email={props.email}/>
-                        <div className={classes.sep}></div>
-                        <IconButton className={classes.addButton} onClick={handleOpen}>
-                            <AddCircleIcon color="primary"/>
-                        </IconButton>
-                        <Button onClick={handleOpenTwo}>+</Button>
+                        <SideMenu email={props.email} />
+                        <div className={classes.add}>
+                            <IconButton className={classes.addButton} onClick={handleOpen}>
+                                <AddCircleIcon color="primary"/>
+                            </IconButton>
+                            <IconButton className={classes.addButton} onClick={handleOpenTwo}>
+                                <AddCircleIcon color="primary"/>
+                            </IconButton>
+                        </div>
 
                     </Toolbar>
                     <Divider className={classes.divider} orientation="vertical" flexItem/>

@@ -100,7 +100,7 @@ const TextUtilBar = (props) => {
     return(
         <div key={props.content} className={classes.divMain}>
             <Box className={classes.mainBox}>
-                <AppBar elevation={0} className={classes.box} position="static">
+                <AppBar style={{ backgroundColor: "#EBEAEB"}} elevation={0} className={classes.box} position="static">
                     <Toolbar variant="dense">
                         <Divider orientation='vertical' flexItem/>
                         <div className={classes.sep2}></div>

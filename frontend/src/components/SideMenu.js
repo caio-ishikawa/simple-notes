@@ -10,11 +10,15 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const useStyles = makeStyles({
     button: {
-        left: 0
+        left: 0,
+        float: "left",
+        margin: 0,
     },
     list: {
         width: "26vh"
     },
+    menu: {
+    }
 });
 
 const SideMenu = (props) => {
@@ -50,7 +54,7 @@ const SideMenu = (props) => {
 
 
     return(
-        <div>
+        <div className={classes.menu}>
             <IconButton onClick={toggleDrawer} className={classes.button}>
                 <MenuIcon/>
             </IconButton>

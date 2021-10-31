@@ -18,7 +18,8 @@ router.post('/register', async (req, res) => {
     } else {
 
         // PASSWORD HASHING //
-        const hash = bcrypt.hashSync(password, 10);        
+        const salt = await bcrypt.genSalt(10);
+        const hash = await bcrypt.hashSync(password, salt);        
         console.log(hash);
 
         // INSTANTIATE NEW USER //
