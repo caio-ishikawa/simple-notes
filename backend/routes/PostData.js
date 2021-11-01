@@ -11,16 +11,9 @@ router.post('/save_note', async (req, res) => {
     const noteTitle = req.body.note_title;
     const note = req.body.note;
 
-    const newNote = new Note({
-        note_title: noteTitle,
-        note: note,
-        user_email: email
-    });
-
-    const notebook = await Notebook.findOne({ user_email: email, title: notebookTitle });
+     // Chekcs if note exists and updates it // 
     const noteExists = await Note.findOne({ user_email: email, note_title: noteTitle});
 
-    // If the note already exists, update the note //
     if (noteExists) {
         const update = await Note.updateOne({note_title: noteTitle}, {note: note});
         const updatedNote = await Note.findOne({  note_title: noteTitle });
@@ -55,5 +48,25 @@ router.post('/new_notebook', verifyToken, async (req, res) => {
     }
 });
 
+router.post('/add_tag', async (req, res) => {
+    const note = req.body.note;
+    const email = req.body.email;
+    const color = req.body.color;
+
+    const selectedNote = await Note.findOne({ user_email: email, note_title: note });
+
+    if (!selectedNote) {
+        res.send("Could not find note of title: " + note);
+    }
+    
+    try{ 
+        const savedTag = await Note.updateOne({ user_email: email}, { tag: color });
+        const response = await Note.findOne({  user_email: email, note_title: note })
+        res.send(response.tag);
+    } catch (err) {
+        res.send(err);
+    }
+
+});
 
 module.exports = router;

@@ -67,8 +67,8 @@ const NoteSearch = (props) => {
             email: props.email,
             title: noteName
         };
-        Axios.post('http://localhost:3002/post/new_notebook', data)
-        .then((res) => console.log(res))
+        // Axios.post('http://localhost:3002/post/new_notebook', data)
+        // .then((res) => console.log(res))
     };
 
     return (
