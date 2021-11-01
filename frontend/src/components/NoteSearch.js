@@ -67,8 +67,8 @@ const NoteSearch = (props) => {
             email: props.email,
             title: noteName
         };
-        // Axios.post('http://localhost:3002/post/new_notebook', data)
-        // .then((res) => console.log(res))
+        Axios.post('http://localhost:3002/post/new_note', data)
+            .then((res) => console.log(res))
     };
 
     return (
@@ -118,8 +118,8 @@ const NoteSearch = (props) => {
                     <Typography id="modal-title" variant="h6">
                         New note name:
                     </Typography>
-                    <input placeholder="note"/>
-                    <Button>Submit</Button>
+                    <input placeholder="note" onChange={(e) => setNotename(e.target.value)}/>
+                    <Button onClick={submitData}>Submit</Button>
                 </Box>
             </Modal>
         </div>

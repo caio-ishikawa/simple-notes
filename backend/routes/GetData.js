@@ -15,6 +15,18 @@ router.post('/get_data', verifyToken, async (req, res) => {
     res.send({ notebooks, notes });
 });
 
+// RETURNS ALL NOTES //
+router.post('/get_all_notes', async (req, res) => {
+    const email = req.body.email;
+
+    const notes = await Note.find({ user_email: email });
+    if (!notes) {
+        res.send("No notes");
+    } else {
+        res.send(notes)
+    }
+});
+
 // RETURNS SPECIFIC NOTEBOOK'S CONTENT //
 router.post('/notebook_notes', verifyToken, async (req, res) => {
     const email = req.body.email;

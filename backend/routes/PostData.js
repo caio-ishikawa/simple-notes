@@ -24,6 +24,35 @@ router.post('/save_note', async (req, res) => {
     }
 });
 
+// CREATES NEW NOTE //
+router.post('/new_note', verifyToken, async (req, res) => {
+    const email = req.body.email;
+    const title = req.body.title;
+
+    console.log(title)
+
+    // Checks if note already exists //
+    const noteExists = await Note.findOne({ user_email: email, note_title: title });
+    if (noteExists) {
+        res.send(noteExists);
+    } else {
+        // Instantiates new note //
+        const newNote = new Note({
+            user_email: email,
+            note_title: title,
+            note: "# " + title,
+        });
+
+        // Saves note //
+        try{
+            const savedNote = await newNote.save();
+            res.send(savedNote);
+        } catch (err) {
+            res.send(err);
+        }
+    }
+})
+
 //  CREATES NOTEBOOK //
 router.post('/new_notebook', verifyToken, async (req, res) => {
     const email = req.body.email;
@@ -62,7 +91,7 @@ router.post('/add_tag', async (req, res) => {
     try{ 
         const savedTag = await Note.updateOne({ user_email: email}, { tag: color });
         const response = await Note.findOne({  user_email: email, note_title: note })
-        res.send(response.tag);
+        res.send(response);
     } catch (err) {
         res.send(err);
     }
