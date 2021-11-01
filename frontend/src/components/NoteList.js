@@ -72,6 +72,7 @@ const NoteList = (props) => {
         localStorage.setItem('title', note);
     };
 
+    // Changes label color //
     const changeLabel = (color) => {
         let data = {
             email: 'caio@caiotest.com',
@@ -84,15 +85,16 @@ const NoteList = (props) => {
             .then((res) => console.log(res));
     };
 
+    // Selectes which note tag menu in the list to open //
     const handleClick = (event, note) => {
         setAnchorEl(event.currentTarget)
         setNoteTitle(note)
     };
 
+    // Closes list //
     const handleClose = () => {
         setAnchorEl(null);
     };
-
 
     return (
         <div className={classes.mainDiv}>
@@ -117,6 +119,7 @@ const NoteList = (props) => {
                                             <LabelIcon className={classes.listTag}/>
                                     </IconButton>
                                     <Menu
+                                    elevation={1}
                                     id={idx}
                                     anchorEl={anchorEl}
                                     open={open}
@@ -130,6 +133,30 @@ const NoteList = (props) => {
                                             >
                                             </Box>
                                             <p>green</p>
+                                        </MenuItem>
+                                        <MenuItem id={idx} onClick={() => changeLabel("#D00000")}>
+                                            <Box sx={{ width: "2vh", height: "2vh", backgroundColor: "#D00000"}}
+                                            >
+                                            </Box>
+                                            <p>red</p>
+                                        </MenuItem>
+                                        <MenuItem id={idx} onClick={() => changeLabel("#FFBA08")}>
+                                            <Box sx={{ width: "2vh", height: "2vh", backgroundColor: "#FFBA08"}}
+                                            >
+                                            </Box>
+                                            <p>yellow</p>
+                                        </MenuItem>
+                                        <MenuItem id={idx} onClick={() => changeLabel("#145C9E")}>
+                                            <Box sx={{ width: "2vh", height: "2vh", backgroundColor: "#145C9E"}}
+                                            >
+                                            </Box>
+                                            <p>blue</p>
+                                        </MenuItem>
+                                        <MenuItem id={idx} onClick={() => changeLabel("#CC59D2")}>
+                                            <Box sx={{ width: "2vh", height: "2vh", backgroundColor: "#CC59D2"}}
+                                            >
+                                            </Box>
+                                            <p>pink</p>
                                         </MenuItem>
                                     </Menu>
                                 </Grid>

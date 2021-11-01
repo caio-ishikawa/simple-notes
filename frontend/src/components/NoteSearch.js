@@ -19,6 +19,7 @@ const useStyles = makeStyles({
     },
     addButton: {
         float: "right",
+        color: "black"
     },
     search: {
         maxWidth: "22vh",
@@ -43,7 +44,8 @@ const useStyles = makeStyles({
         flexGrow: 1,
         marginLeft: "2vh"
     },
-    divider: {
+    icon: {
+        color: "black"
     },
 })
 
@@ -57,10 +59,12 @@ const NoteSearch = (props) => {
     const handleOpenTwo = () => setOpenTwo(true);
     const handleCloseTwo = () => setOpenTwo(false);
 
+    // Sets the note name //
     const getNoteName = (e) => {
         setNotename(e.target.value);
     };
 
+    // Submits data to DB //
     const submitData = () => {
         console.log(noteName);
         let data = {
@@ -76,13 +80,9 @@ const NoteSearch = (props) => {
             <Box sx={{flexGrow: 1}}>
                 <AppBar style={{ backgroundColor: "#EBEAEB" }} className={classes.box} elevation={0} position="static">
                     <Toolbar variant="dense">
-                        <SideMenu email={props.email} />
                         <div className={classes.add}>
-                            <IconButton className={classes.addButton} onClick={handleOpen}>
-                                <AddCircleIcon color="primary"/>
-                            </IconButton>
-                            <IconButton className={classes.addButton} onClick={handleOpenTwo}>
-                                <AddCircleIcon color="primary"/>
+                            <IconButton className={classes.addButton} color="inherit" onClick={handleOpenTwo}>
+                                <AddCircleIcon className={classes.icon}/>
                             </IconButton>
                         </div>
 
@@ -91,21 +91,7 @@ const NoteSearch = (props) => {
                 </AppBar>
             </Box>
 
-            {/* NEW NOTEBOOK MODAL */}
-            <Modal 
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-            >
-                <Box className={classes.newNote}>
-                    <Typography id="modal-modal-title" variant="h6">
-                        New notebook name:
-                    </Typography>
-                    <input placeholder="name" onChange={(e) => getNoteName(e)}/>
-                    <Button onClick={submitData}>Submit</Button>
-                </Box>
-            </Modal>
+   
 
             {/* NEW NOTE MODAL */}
             <Modal

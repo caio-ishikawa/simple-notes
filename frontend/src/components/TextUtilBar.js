@@ -35,7 +35,7 @@ const useStyles = makeStyles({
         height: "3vh"
     },
     saveButton: {
-        height: "3vh"
+        height: "3vh",
     },
     sep: {
         flexGrow: "1"
@@ -121,7 +121,7 @@ const TextUtilBar = (props) => {
                             </IconButton>
                         </ButtonGroup>
                         <div className={classes.sep}></div>
-                        <Button elevation={0} edge="end" className={classes.saveButton} onClick={saveNotebook} variant="contained">SAVE</Button>
+                        <Button elevation={0} edge="end" className={classes.saveButton} color="inherit" onClick={saveNotebook} variant="contained">SAVE</Button>
                     </Toolbar>
                 </AppBar>
             </Box>
