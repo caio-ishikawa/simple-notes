@@ -22,7 +22,6 @@ const useStyles = makeStyles({
         width: "107%",
     },
     listTag: {
-        color: "grey",
         float: "right"
     },
     tagButton: {
@@ -53,15 +52,26 @@ const NoteList = (props) => {
             //title: "caiotest's Notebook"
         };
         let response = [];
+        let tags = [];
         // Axios.post('http://localhost:3002/user/notebook_notes', data)
         // .then((res) => setResults(res.data))
         Axios.post('http://localhost:3002/user/get_all_notes', data)
             .then((res) => {
+                console.log(res.data);
                 let data = res.data;
+
+                // Pushes tags and note titles to separate arrays //
                 for (var i = 0; i < data.length; i++) {
                     response.push(data[i].note_title);
+                    tags.push(data[i].tag);
                 }
-                setResults(response)
+
+                // Maps both arrays into object //
+                const combinedRes = response.map((content, idx) => {
+                    return {title: content, tag: tags[idx]};
+                });
+
+                setResults(combinedRes);
             });
       },[]);
 
@@ -79,7 +89,6 @@ const NoteList = (props) => {
             note: noteTitle,
             color: color
         };
-        console.log({ noteTitle, color });
 
         Axios.post('http://localhost:3002/post/add_tag', data)
             .then((res) => console.log(res));
@@ -104,19 +113,19 @@ const NoteList = (props) => {
                         return(
                             <Grid container spacing={0}>
                                 <Grid item sm={11} md={11} lg={11}>
-                                <ListItemButton className={classes.list} key={idx} onClick={(idx) => handleList(note, idx)} selectedindex={idx}>
-                                    <ListItemText key={idx} primary={note} secondary="date"/>
+                                <ListItemButton className={classes.list} key={idx} onClick={(idx) => handleList(note.title, idx)} selectedindex={idx}>
+                                    <ListItemText key={idx} primary={note.title} secondary="date"/>
                                 </ListItemButton> 
                                 </Grid>
                                 <Grid key={idx} item sm={1} md={1} lg={1}>
                                     <IconButton
                                     className={classes.tagButton}
-                                    onClick={(e) => handleClick(e, note)}
+                                    onClick={(e) => handleClick(e, note.title)}
                                     aria-controls="basic-menu"
                                     aria-haspopup="true"
                                     aria-expanded={open ? open : undefined}
                                     >
-                                            <LabelIcon className={classes.listTag}/>
+                                            <LabelIcon sx={{ color: note.tag ? note.tag : "#808080"}} className={classes.listTag}/>
                                     </IconButton>
                                     <Menu
                                     elevation={1}

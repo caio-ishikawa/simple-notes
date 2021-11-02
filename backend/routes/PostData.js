@@ -41,6 +41,7 @@ router.post('/new_note', verifyToken, async (req, res) => {
             user_email: email,
             note_title: title,
             note: "# " + title,
+            tag: "#808080"
         });
 
         // Saves note //
@@ -89,8 +90,8 @@ router.post('/add_tag', async (req, res) => {
     }
     
     try{ 
-        const savedTag = await Note.updateOne({ user_email: email}, { tag: color });
-        const response = await Note.findOne({  user_email: email, note_title: note })
+        const savedTag = await Note.updateOne({ user_email: email, note_title: note}, { tag: color });
+        const response = await Note.findOne({  user_email: email, note_title: note });
         res.send(response);
     } catch (err) {
         res.send(err);

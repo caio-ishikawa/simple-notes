@@ -19,7 +19,7 @@ const noteSchema = new mongoose.Schema({
     },
     tag: {
         type: String,
-        enum: ['#D00000', "#FFBA08", "#145C9E", "#CC59D2", "#00AF54"],
+        enum: ['#D00000', "#FFBA08", "#145C9E", "#CC59D2", "#00AF54", "#808080"],
         required: false
     }
 });
