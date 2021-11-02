@@ -12,18 +12,15 @@ import Toolbar from '@mui/material/Toolbar';
 import Axios from 'axios';
 import Divider from '@mui/material/Divider';
 import SideMenu from './SideMenu';
+import NoteAddIcon from '@mui/icons-material/NoteAdd';
 
 const useStyles = makeStyles({
     box: {
         backgroundColor: "#EBEAEB",
     },
     addButton: {
-        float: "right",
-        color: "black"
     },
     search: {
-        maxWidth: "22vh",
-        minWidth: "20vh",
         backgroundColor: "#FFFF",
         borderRadius: "4px",
     },
@@ -41,11 +38,9 @@ const useStyles = makeStyles({
         flexGrow: 1
     },
     add: {
-        flexGrow: 1,
-        marginLeft: "2vh"
     },
     icon: {
-        color: "black"
+        color: "black",
     },
 })
 
@@ -80,9 +75,11 @@ const NoteSearch = (props) => {
             <Box sx={{flexGrow: 1}}>
                 <AppBar style={{ backgroundColor: "#EBEAEB" }} className={classes.box} elevation={0} position="static">
                     <Toolbar variant="dense">
+                        <TextField className={classes.search} size="small" placeholder="Search by title"/>
+                        <div className={classes.sep}></div>
                         <div className={classes.add}>
                             <IconButton className={classes.addButton} color="inherit" onClick={handleOpenTwo}>
-                                <AddCircleIcon className={classes.icon}/>
+                                <NoteAddIcon className={classes.icon}/>
                             </IconButton>
                         </div>
 
