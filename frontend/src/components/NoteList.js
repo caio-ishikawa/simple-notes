@@ -116,7 +116,7 @@ const NoteList = (props) => {
                             <Grid container spacing={0}>
                                 <Grid item sm={11} md={11} lg={11}>
                                 <ListItemButton className={classes.list} key={idx} onClick={() => handleList(note.title, idx)} selected={idx === index ? true : false }>
-                                    <ListItemText key={idx} primary={note.title} secondary="date"/>
+                                    <ListItemText key={idx} primary={note.title} primaryTypographyProps={{ fontWeight: '600'}} secondary="date"/>
                                 </ListItemButton> 
                                 </Grid>
                                 <Grid key={idx} item sm={1} md={1} lg={1}>
