@@ -73,7 +73,7 @@ const NoteList = (props) => {
 
                 setResults(combinedRes);
             });
-      },[]);
+      },[tag]);
 
     
     // Select notebooks //
@@ -89,6 +89,8 @@ const NoteList = (props) => {
             note: noteTitle,
             color: color
         };
+
+        setTag(color);
 
         Axios.post('http://localhost:3002/post/add_tag', data)
             .then((res) => console.log(res));
