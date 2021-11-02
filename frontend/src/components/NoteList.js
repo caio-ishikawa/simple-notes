@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     mainDiv: {
     },
     list: {
-        width: "107%",
+        width: "108.6%",
     },
     listTag: {
         float: "right"
@@ -40,6 +40,7 @@ const NoteList = (props) => {
     const [tag, setTag] = useState('');
     const [noteTitle, setNoteTitle] = useState('');
     const [anchorEl, setAnchorEl] = useState(null);
+    const [index, setIndex] = useState(0);
     const open = Boolean(anchorEl);
     const dispatch = useDispatch();
     const reduxNotebook = useSelector((state) => state.notebook);
@@ -76,9 +77,10 @@ const NoteList = (props) => {
 
     
     // Select notebooks //
-    const handleList = (note, index) => {
+    const handleList = (note, idx) => {
         dispatch({ type: 'NOTE_TITLE', payload: note});
         localStorage.setItem('title', note);
+        setIndex(idx)
     };
 
     // Changes label color //
@@ -113,7 +115,7 @@ const NoteList = (props) => {
                         return(
                             <Grid container spacing={0}>
                                 <Grid item sm={11} md={11} lg={11}>
-                                <ListItemButton className={classes.list} key={idx} onClick={(idx) => handleList(note.title, idx)} selectedindex={idx}>
+                                <ListItemButton className={classes.list} key={idx} onClick={() => handleList(note.title, idx)} selected={idx === index ? true : false }>
                                     <ListItemText key={idx} primary={note.title} secondary="date"/>
                                 </ListItemButton> 
                                 </Grid>

@@ -54,7 +54,7 @@ const useStyles = makeStyles({
 const TextUtilBar = (props) => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const [selected, setSelected] = useState(false);
+    const [selected, setSelected] = useState(true);
     const [content, setContent] = useState('');
     const [title, setTitle] = useState('');
 

@@ -71,7 +71,7 @@ const MarkdownView = (props) => {
             <TextUtilBar className={classes.utilBar} content={update ? update : text} title={item}/>
           </div>
           <div className={classes.mainDiv}>
-            {reduxEditState ? 
+            {reduxEditState === true ? 
             <Editor
             height="90vh"
             defaultLanguage='markdown'

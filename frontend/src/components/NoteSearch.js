@@ -89,7 +89,6 @@ const NoteSearch = (props) => {
             </Box>
 
    
-
             {/* NEW NOTE MODAL */}
             <Modal
             open={openTwo}
