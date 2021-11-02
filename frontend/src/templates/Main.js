@@ -11,10 +11,10 @@ function Main() {
     return (
       <div>
         <Grid container spacing={0}>
-          <Grid item xs={12} md={3} lg={2}>
+          <Grid item xs={12} md={3} lg={3}>
             <NoteList email={state}/>
           </Grid>
-          <Grid item xs={12} md={9} lg={10}>
+          <Grid item xs={12} md={9} lg={9}>
           <MarkdownView email={state}/>
           </Grid>
         </Grid>

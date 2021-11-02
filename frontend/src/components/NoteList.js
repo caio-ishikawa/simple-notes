@@ -19,10 +19,11 @@ const useStyles = makeStyles({
     mainDiv: {
     },
     list: {
-        width: "108.6%",
+        width: "107%",
     },
     listTag: {
-        float: "right"
+        float: "right",
+        paddingRight: "1.5vh"
     },
     tagButton: {
         float: "right",

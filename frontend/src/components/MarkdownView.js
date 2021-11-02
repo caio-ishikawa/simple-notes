@@ -23,7 +23,7 @@ const useStyles = makeStyles({
     minHeight: "3.66vh",
   },
   markdownView: {
-    paddingLeft: "4.6vh",
+    paddingLeft: "2.8vh",
     paddingRight: "3vh"
   }
 });
