@@ -20,7 +20,18 @@ router.post('/save_note', async (req, res) => {
         res.send(updatedNote);
     } else {
         // If notebook does not exist, alert user //
-        res.send("Error: no note selected");
+        const newNote = new Note({
+            note_title: noteTitle,
+            note: note,
+            user_email: email,
+            tag: "#808080"
+        });
+        try{
+            const savedNote = await newNote.save();
+            res.send(newNote);
+        } catch (err) {
+            res.send(err);
+        }
     }
 });
 

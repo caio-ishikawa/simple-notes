@@ -19,9 +19,12 @@ const secrets = "mongoDB database credentials";
 module.exports = secrets;
 
 ```
-
   3. Run "docker-compose build" on the project source directory.
   4. Run "docker-compose up".
   5. Enter your browser and type "http://localhost:3000".
 
 
+## KNOWN BUGS:
+
+- Refresh on notes page causes JWT to expire.
+- New notes don't show up on the list until user refreshes.

@@ -45,16 +45,15 @@ const NoteList = (props) => {
     const reduxNotebook = useSelector((state) => state.notebook);
     const email = props.email;
 
-    // Gets notes titles from API //
+    // Gets notes from API //
     useEffect(() => {
         let data = {
             email: email,
-            //title: "caiotest's Notebook"
         };
         let response = [];
         let tags = [];
-        // Axios.post('http://localhost:3002/user/notebook_notes', data)
-        // .then((res) => setResults(res.data))
+
+        // API Request to get notes data //
         Axios.post('http://localhost:3002/user/get_all_notes', data)
             .then((res) => {
                 console.log(res.data);
@@ -90,10 +89,9 @@ const NoteList = (props) => {
             color: color
         };
 
-        setTag(color);
-
         Axios.post('http://localhost:3002/post/add_tag', data)
-            .then((res) => console.log(res));
+            .then((res) => setTag(res.data.tag));
+
     };
 
     // Selectes which note tag menu in the list to open //
