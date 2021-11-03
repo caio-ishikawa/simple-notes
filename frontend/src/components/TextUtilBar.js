@@ -4,6 +4,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import ToggleButton from '@mui/material/ToggleButton';
 import DownloadIcon from '@mui/icons-material/Download';
 import ShareIcon from '@mui/icons-material/Share';
+import SaveIcon from '@mui/icons-material/Save';
 import IconButton from '@mui/material/IconButton';
 import { useState, useEffect } from 'react';
 //import { useSelector } from 'react-redux';
@@ -47,7 +48,6 @@ const useStyles = makeStyles({
     },
     buttonGroup: {
         color: "black",
-        marginLeft: "20.5vh"
     }
 });
 
@@ -91,7 +91,7 @@ const TextUtilBar = (props) => {
         const element = document.createElement('a');
         const file = new Blob([content], {type: 'text/plain'});
         element.href = URL.createObjectURL(file);
-        element.download = title + '.txt';
+        element.download = title + '.md';
         document.body.appendChild(element);
         element.click();
 
@@ -112,16 +112,15 @@ const TextUtilBar = (props) => {
                         >
                             <EditIcon/>
                         </ToggleButton>
-                        <ButtonGroup variant="contained" className={classes.buttonGroup} disableElevation="true" color="inherit">
+                        <div className={classes.sep}></div>
+                        <ButtonGroup variant="contained" className={classes.buttonGroup} color="inherit">
                             <IconButton className={classes.button} onClick={downloadFile}>
                                 <DownloadIcon/>
                             </IconButton>
-                            <IconButton className={classes.button}>
-                                <ShareIcon/>
+                            <IconButton onClick={saveNotebook} className={classes.button}>
+                                <SaveIcon/>
                             </IconButton>
                         </ButtonGroup>
-                        <div className={classes.sep}></div>
-                        <Button elevation={0} edge="end" className={classes.saveButton} color="inherit" onClick={saveNotebook} variant="contained">SAVE</Button>
                     </Toolbar>
                 </AppBar>
             </Box>
