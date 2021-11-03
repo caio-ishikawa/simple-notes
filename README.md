@@ -27,5 +27,4 @@ module.exports = secrets;
 ## KNOWN BUGS:
 
 - Refresh on notes page causes JWT to expire.
-- New notes don't show up on the list until user refreshes.
-- Notes don't load in properly after login. (Check the default reducer state)
+- New notes don't show up until refresh.
