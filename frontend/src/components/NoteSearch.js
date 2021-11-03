@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import { makeStyles } from '@mui/styles';
 import IconButton from '@mui/material/IconButton';
@@ -13,6 +13,7 @@ import Axios from 'axios';
 import Divider from '@mui/material/Divider';
 import SideMenu from './SideMenu';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
+import Autocomplete from '@mui/material/Autocomplete';
 
 const useStyles = makeStyles({
     box: {
@@ -49,10 +50,25 @@ const NoteSearch = (props) => {
     const [open, setOpen] = useState(false);
     const [openTwo, setOpenTwo] = useState(false);
     const [noteName, setNotename] = useState('');
+    const [noteList, setNoteList] = useState([]);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const handleOpenTwo = () => setOpenTwo(true);
     const handleCloseTwo = () => setOpenTwo(false);
+
+    useEffect(() => {
+        let data = {
+            email: props.email
+        };
+        Axios.post('http://localhost:3002/user/get_all_notes', data)
+            .then((res) => {
+                let notelist = [];
+                for (var i = 0; i < res.data.length; i++){
+                    notelist.push(res.data[i].note_title);
+                };
+                setNoteList(notelist)
+            })
+    }, []);
 
     // Sets the note name //
     const getNoteName = (e) => {
@@ -72,10 +88,10 @@ const NoteSearch = (props) => {
 
     return (
         <div>
-            <Box sx={{flexGrow: 1}}>
+            <Box sx={{flexGrow: 1, width: "108.4%"}}>
                 <AppBar style={{ backgroundColor: "#EBEAEB" }} className={classes.box} elevation={0} position="static">
                     <Toolbar variant="dense">
-                        <TextField className={classes.search} size="small" placeholder="Search by title"/>
+                        <Typography sx={{ fontWeight: "600", marginTop: "0.1vh"}} color="black" variant="h5">simple-notes</Typography>
                         <div className={classes.sep}></div>
                         <div className={classes.add}>
                             <IconButton className={classes.addButton} color="inherit" onClick={handleOpenTwo}>

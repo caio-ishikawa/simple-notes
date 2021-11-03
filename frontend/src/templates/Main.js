@@ -2,6 +2,7 @@ import MarkdownView from '../components/MarkdownView';
 import NoteList from '../components/NoteList';
 import Grid from '@mui/material/Grid';
 import { useHistory } from 'react-router';
+import Box from '@mui/material/Box';
 
 
 function Main() {
@@ -11,11 +12,11 @@ function Main() {
     return (
       <div>
         <Grid container spacing={0}>
-          <Grid item xs={12} md={3} lg={3}>
+          <Grid item xs={12} sm={3} md={3} lg={3}>
             <NoteList email={state}/>
           </Grid>
-          <Grid item xs={12} md={9} lg={9}>
-          <MarkdownView email={state}/>
+          <Grid item xs={12} sm={9} md={9} lg={9}>
+            <MarkdownView email={state}/>
           </Grid>
         </Grid>
       </div>

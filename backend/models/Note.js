@@ -6,8 +6,8 @@ const noteSchema = new mongoose.Schema({
         required: true
     },
     date_added: {
-        type: String,
-        createdAt: Date.now()
+        type: Date,
+        default: () => Date.now() + 7*24*60*60*1000
     },
     note: {
         type: String,
@@ -21,7 +21,7 @@ const noteSchema = new mongoose.Schema({
         type: String,
         enum: ['#D00000', "#FFBA08", "#145C9E", "#CC59D2", "#00AF54", "#808080"],
         required: false
-    }
+    },
 });
 
 module.exports = mongoose.model('Note', noteSchema);

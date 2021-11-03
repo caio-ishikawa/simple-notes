@@ -94,7 +94,6 @@ const TextUtilBar = (props) => {
         element.download = title + '.md';
         document.body.appendChild(element);
         element.click();
-
     };
 
     return(

@@ -13,6 +13,9 @@ import LabelIcon from '@mui/icons-material/Label';
 import Grid from '@mui/material/Grid';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 
 
 const useStyles = makeStyles({
@@ -32,6 +35,9 @@ const useStyles = makeStyles({
     },
     form: {
         border: "none"
+    },
+    noteList: {
+        backgroundColor: "black"
     }
 })
 
@@ -42,11 +48,12 @@ const NoteList = (props) => {
     const [noteTitle, setNoteTitle] = useState('');
     const [anchorEl, setAnchorEl] = useState(null);
     const [index, setIndex] = useState(0);
+    const [noteList, setNoteList] = useState([]);
     const open = Boolean(anchorEl);
     const dispatch = useDispatch();
     const reduxNotebook = useSelector((state) => state.notebook);
     const email = props.email;
-
+    
     // Gets notes from API //
     useEffect(() => {
         let data = {
@@ -73,9 +80,9 @@ const NoteList = (props) => {
                 });
 
                 setResults(combinedRes);
+                setNoteList(response);
             });
       },[tag]);
-
     
     // Select notebooks //
     const handleList = (note, idx) => {
@@ -111,13 +118,24 @@ const NoteList = (props) => {
     return (
         <div className={classes.mainDiv}>
                 <NoteSearch email={email}/>
+                <Autocomplete
+                    className={classes.noteList}
+                    disablePortal
+                    id="combo-box-demo"
+                    options={noteList}
+                    size="small"
+                    sx={{ margin: "auto" , width: "99%", backgroundColor: "white", marginTop: "2vh", marginBottom: "1vh", marginLeft: "1.5vh" }}
+                    renderInput={(params) => <TextField sx={{ fontWeight: "600"}} {...params} 
+                    placeholder="Search titles..." />}
+                    onChange={(e, value) => handleList(value, noteList.indexOf(value))}
+                    />
                 <List component="nav" aria-label="test" className={classes.list}>
                     {results.map((note, idx) => {
                         return(
                             <Grid container spacing={0}>
                                 <Grid item sm={11} md={11} lg={11}>
                                 <ListItemButton className={classes.list} key={idx} onClick={() => handleList(note.title, idx)} selected={idx === index ? true : false }>
-                                    <ListItemText key={idx} primary={note.title} primaryTypographyProps={{ fontWeight: '600'}} secondary="date"/>
+                                    <ListItemText key={idx} primary={note.title} sx={{ marginLeft: "1.2vh"}} primaryTypographyProps={{ fontWeight: '600'}} secondary="date"/>
                                 </ListItemButton> 
                                 </Grid>
                                 <Grid key={idx} item sm={1} md={1} lg={1}>
@@ -128,7 +146,7 @@ const NoteList = (props) => {
                                     aria-haspopup="true"
                                     aria-expanded={open ? open : undefined}
                                     >
-                                            <LabelIcon sx={{ color: note.tag ? note.tag : "#808080"}} className={classes.listTag}/>
+                                            <BookmarkIcon sx={{ color: note.tag ? note.tag : "#808080"}} className={classes.listTag}/>
                                     </IconButton>
                                     <Menu
                                     elevation={1}
