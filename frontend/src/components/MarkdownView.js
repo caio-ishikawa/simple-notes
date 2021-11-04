@@ -23,8 +23,11 @@ const useStyles = makeStyles({
     minHeight: "3.66vh",
   },
   markdownView: {
-    paddingLeft: "2.8vh",
+    paddingLeft: "5.8vh",
     paddingRight: "3vh"
+  },
+  editorDiv: {
+    marginRight: "5vh"
   }
 });
 
@@ -55,10 +58,32 @@ const MarkdownView = (props) => {
       setUpdate(initialState);
     },[item]);
 
-    // UI Settings //
-    const handleEditorMount = async (editor, monaco) => {
-      editor.fontSize = "20px";
-    };
+    // Sets up VIM keybinds pre mount //
+    const handleEditorMount = (editor, monaco) => {
+      // setup key bindings
+      editor.addAction({
+        // an unique identifier of the contributed action
+        id: "some-unique-id",
+        // a label of the action that will be presented to the user
+        label: "Some label!",
+        keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_S],
+        // the method that will be executed when the action is triggered.
+        run: function (editor) {
+          alert("we wanna save something => " + editor.getValue());
+          return null;
+        }
+      });
+      // setup monaco-vim
+      window.require.config({
+        paths: {
+          "monaco-vim": "https://unpkg.com/monaco-vim/dist/monaco-vim"
+        }
+      });
+      window.require(["monaco-vim"], function (MonacoVim) {
+        const statusNode = document.querySelector(".status-node");
+        MonacoVim.initVimMode(editor, statusNode);
+      });
+    }
 
     // Updates the text on ReactMarkdown when editing //
     const updateNote = (e) => {
@@ -72,15 +97,18 @@ const MarkdownView = (props) => {
           </div>
           <div className={classes.mainDiv}>
             {reduxEditState === true ? 
-            <Editor
-            height="90vh"
-            defaultLanguage='markdown'
-            options={{fontSize: '15px', wordWrap: 'on', lineNumbers: "off"}}
-            theme="vs-light"
-            defaultValue={update ? update : text}
-            onChange={(e) => updateNote(e)}
-            onMount={handleEditorMount}
-            />
+            <div className={classes.editorDiv}>
+              <Editor
+              height="90vh"
+              defaultLanguage='markdown'
+              options={{fontSize: '15px', wordWrap: 'on', lineNumbers: "off"}}
+              theme="vs-light"
+              defaultValue={update ? update : text}
+              onChange={(e) => updateNote(e)}
+              onMount={handleEditorMount}
+              />
+              <code className="status-node"></code>
+            </div>
             :
             <ReactMarkdown
             className={classes.markdownView}
@@ -102,7 +130,7 @@ const MarkdownView = (props) => {
             }}
             />
           }
-            <div id="editor"></div>
+            <div className={classes.editorDiv} id="editor"></div>
           </div>
         </div>
       );

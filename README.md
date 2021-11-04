@@ -1,7 +1,7 @@
 # Simple Notes (Work in Progress)
 
-Simple notes is a web application that allows users to quickly take clean notes and save it in any of the desired folders.
-ada
+Simple-notes is a Markdwon editor with VIM keybinds aimed at making online note-taking easy to manage across different devices. Save it once and access it anywhere.
+
 # Technologies 
   - MERN (MongoDB, Express, React, and Node).
   - Redux
@@ -32,6 +32,7 @@ module.exports = secrets;
 
 ## TODO:
 
+- Delete note feature.
 - Add filter fucntion for tags.
 - Fix UI spacing on navbar icons.
 - Rework the grid system for better responsiveness.
