@@ -29,11 +29,14 @@ const useStyles = makeStyles({
         position: 'absolute',
         background: "white",
         borderRadius: "8px",
-        height: "10vh",
-        top: '10%',
+        height: "33.6vh",
+        top: '45%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 400,
+        width: 450,
+    },
+    noteModal: {
+        fontWeight: "600"
     },
     sep: {
         flexGrow: 1
@@ -113,11 +116,14 @@ const NoteSearch = (props) => {
             aria-describedby="modal-desc"
             >
                 <Box className={classes.newNote}>
-                    <Typography id="modal-title" variant="h6">
-                        New note name:
+                    <Typography id="modal-title" variant="h6" align="center" sx={{ fontWeight: "500", marginTop:"4vh" }}>
+                        NEW NOTE:
                     </Typography>
-                    <input placeholder="note" onChange={(e) => setNotename(e.target.value)}/>
-                    <Button onClick={submitData}>Submit</Button>
+                    <div style={{ marginTop: "4vh", width: "100%",  textAlign: "center" }}>
+                    <TextField size="small" sx={{ width: "80%", textAlign: "center" }} placeholder="Title" onChange={(e) => setNotename(e.target.value)}/>
+                    <br></br>
+                    <Button variant="contained" sx={{ marginTop: "4vh", marginBottom: "4vh", backgroundColor: "black"}} onClick={submitData}>Submit</Button>
+                    </div>
                 </Box>
             </Modal>
         </div>

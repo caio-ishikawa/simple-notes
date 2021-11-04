@@ -4,8 +4,10 @@ import Main from './templates/Main';
 import Homepage from './templates/Homepage';
 import Login from './templates/Login';
 import Register from './templates/Register';
+import Axios from 'axios';
 
 function App() {
+  Axios.defaults.withCredentials = true;
 
   return (
     <div>

@@ -26,7 +26,7 @@ const useStyles = makeStyles({
     },
     listTag: {
         float: "right",
-        paddingRight: "1.5vh"
+        overflow: "ellipsis"
     },
     tagButton: {
         float: "right",
@@ -139,15 +139,18 @@ const NoteList = (props) => {
                                 </ListItemButton> 
                                 </Grid>
                                 <Grid key={idx} item sm={1} md={1} lg={1}>
-                                    <IconButton
-                                    className={classes.tagButton}
-                                    onClick={(e) => handleClick(e, note.title)}
-                                    aria-controls="basic-menu"
-                                    aria-haspopup="true"
-                                    aria-expanded={open ? open : undefined}
-                                    >
-                                            <BookmarkIcon sx={{ color: note.tag ? note.tag : "#808080"}} className={classes.listTag}/>
-                                    </IconButton>
+                                    <div style={{ width: "100%"}}>
+                                        <IconButton
+                                        sx={{ float: "right" }}
+                                        className={classes.tagButton}
+                                        onClick={(e) => handleClick(e, note.title)}
+                                        aria-controls="basic-menu"
+                                        aria-haspopup="true"
+                                        aria-expanded={open ? open : undefined}
+                                        >
+                                                <BookmarkIcon sx={{ color: note.tag ? note.tag : "#808080"}} className={classes.listTag}/>
+                                        </IconButton>
+                                    </div>
                                     <Menu
                                     elevation={1}
                                     id={idx}
