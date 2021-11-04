@@ -28,7 +28,6 @@ module.exports = secrets;
 ## KNOWN BUGS:
 
 - Search bar turns black on refresh.
-- New notes don't show up until refresh.
 
 ## TODO:
 
