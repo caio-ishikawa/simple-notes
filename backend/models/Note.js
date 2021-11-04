@@ -7,7 +7,7 @@ const noteSchema = new mongoose.Schema({
     },
     date_added: {
         type: Date,
-        default: () => Date.now() + 7*24*60*60*1000
+        default: () => Date.now()
     },
     note: {
         type: String,

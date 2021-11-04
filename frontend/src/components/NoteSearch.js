@@ -14,6 +14,7 @@ import Divider from '@mui/material/Divider';
 import SideMenu from './SideMenu';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import Autocomplete from '@mui/material/Autocomplete';
+import { useSelector, useDispatch } from 'react-redux';
 
 const useStyles = makeStyles({
     box: {
@@ -50,6 +51,8 @@ const useStyles = makeStyles({
 
 const NoteSearch = (props) => {
     const classes = useStyles();
+    const dispatch = useDispatch();
+    const newNoteRedux = useSelector((state) => state.new_note);
     const [open, setOpen] = useState(false);
     const [openTwo, setOpenTwo] = useState(false);
     const [noteName, setNotename] = useState('');
@@ -86,7 +89,11 @@ const NoteSearch = (props) => {
             title: noteName
         };
         Axios.post('http://localhost:3002/post/new_note', data)
-            .then((res) => console.log(res))
+            .then((res) => {
+                console.log(res);
+                dispatch({ type: "UPDATE" })
+            })
+
     };
 
     return (

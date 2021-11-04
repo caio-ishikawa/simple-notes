@@ -52,6 +52,7 @@ const NoteList = (props) => {
     const open = Boolean(anchorEl);
     const dispatch = useDispatch();
     const reduxNotebook = useSelector((state) => state.notebook);
+    const newNoteRedux = useSelector((state) => state.new_note)
     const email = props.email;
     
     // Gets notes from API //
@@ -61,6 +62,7 @@ const NoteList = (props) => {
         };
         let response = [];
         let tags = [];
+        let dates = [];
 
         // API Request to get notes data //
         Axios.post('http://localhost:3002/user/get_all_notes', data)
@@ -72,17 +74,19 @@ const NoteList = (props) => {
                 for (var i = 0; i < data.length; i++) {
                     response.push(data[i].note_title);
                     tags.push(data[i].tag);
+                    let parsedDate = data[i].date_added.slice(0, 10);
+                    dates.push(parsedDate);
                 }
 
                 // Maps both arrays into object //
                 const combinedRes = response.map((content, idx) => {
-                    return {title: content, tag: tags[idx]};
+                    return {title: content, tag: tags[idx], date: dates[idx]};
                 });
 
                 setResults(combinedRes);
                 setNoteList(response);
             });
-      },[tag]);
+      },[tag, newNoteRedux]);
     
     // Select notebooks //
     const handleList = (note, idx) => {
@@ -135,7 +139,7 @@ const NoteList = (props) => {
                             <Grid container spacing={0}>
                                 <Grid item sm={11} md={11} lg={11}>
                                 <ListItemButton className={classes.list} key={idx} onClick={() => handleList(note.title, idx)} selected={idx === index ? true : false }>
-                                    <ListItemText key={idx} primary={note.title} sx={{ marginLeft: "1.2vh"}} primaryTypographyProps={{ fontWeight: '600'}} secondary="date"/>
+                                    <ListItemText key={idx} primary={note.title} secondary={note.date} sx={{ marginLeft: "1.2vh"}} primaryTypographyProps={{ fontWeight: '600'}} />
                                 </ListItemButton> 
                                 </Grid>
                                 <Grid key={idx} item sm={1} md={1} lg={1}>

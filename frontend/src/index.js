@@ -56,10 +56,23 @@ const notebookReducer = (state="title", action) => {
   }
 };
 
+const newNoteReducer = (state=false, action) => {
+  switch(action.type) {
+    case 'UPDATE':
+      state = !state;
+      return state;
+
+    default:
+      return state 
+
+  }
+}
+
 const allReducers = combineReducers({
   edit: reducer,
   note: noteReducer,
-  notebook: notebookReducer
+  notebook: notebookReducer,
+  new_note: newNoteReducer
 });
 
 
