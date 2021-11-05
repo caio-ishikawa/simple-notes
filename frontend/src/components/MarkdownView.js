@@ -23,7 +23,7 @@ const useStyles = makeStyles({
     minHeight: "3.66vh",
   },
   markdownView: {
-    paddingLeft: "5.8vh",
+    paddingLeft: "4.0vh",
     paddingRight: "3vh"
   },
   editorDiv: {
@@ -96,7 +96,7 @@ const MarkdownView = (props) => {
           </div>
           <div className={classes.mainDiv}>
             {reduxEditState === true ? 
-            <div style={{ marginLeft: "2vh", marginTop: "4vh"}}>
+            <div style={{ marginLeft: "0.5vh", marginTop: "4vh"}}>
               <Editor
               height="90vh"
               defaultLanguage='markdown'

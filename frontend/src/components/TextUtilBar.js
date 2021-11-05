@@ -35,14 +35,14 @@ const useStyles = makeStyles({
     button: {
         marginLeft: "2vh",
         width: "5vh",
-        height: "4vh"
+        height: "3vh"
     },
     buttonGroup: {
         width: "5vh",
-        height: "4vh"
+        height: "3vh"
     },
     saveButton: {
-        height: "3vh",
+        height: "4vh",
     },
     sep: {
         flexGrow: "1"
@@ -54,7 +54,7 @@ const useStyles = makeStyles({
     },
     buttonGroup: {
         color: "black",
-        height: "4vh",
+        height: "3vh",
         alignItems: "center"
     }
 });
@@ -130,7 +130,7 @@ const TextUtilBar = (props) => {
                             <EditIcon/>
                         </ToggleButton>
                         <div className={classes.sep}></div>
-                        <ButtonGroup variant="contained" className={classes.buttonGroup} color="inherit">
+                        <ButtonGroup variant="contained"  color="inherit">
                             <IconButton className={classes.buttonGroup} onClick={downloadFile}>
                                 <DownloadIcon/>
                             </IconButton>
