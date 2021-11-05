@@ -130,7 +130,7 @@ const TextUtilBar = (props) => {
                             <EditIcon/>
                         </ToggleButton>
                         <div className={classes.sep}></div>
-                        <ButtonGroup variant="contained"  color="inherit">
+                        <ButtonGroup variant="contained"  color="inherit" style={{ color: "black"}}>
                             <IconButton className={classes.buttonGroup} onClick={downloadFile}>
                                 <DownloadIcon/>
                             </IconButton>

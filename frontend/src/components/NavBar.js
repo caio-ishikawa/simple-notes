@@ -8,18 +8,18 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
     nav: {
-        backgroundColor: "#EBEAEB",
+        backgroundColor: "#0A2533",
     },
     loginButton: {
-        backgroundColor: "#202030",
+        backgroundColor: "white",
         marginRight: "2vh"
     },
     signupButton: {
-        backgroundColor: "#202030",
+        backgroundColor: "white",
     },
     logo: {
         flexGrow: 1,
-        color: "#202030"
+        color: "white"
     }
 })
 
@@ -28,16 +28,16 @@ const NavBar = () => {
 
     return(
         <div>
-            <AppBar elevation={0} style={{ background: "#EBEAEB"}}className={navclasses.nav} position="static">
+            <AppBar elevation={0} style={{ background: "#0A2533"}}className={navclasses.nav} position="static">
                 <Toolbar>
                     <Typography variant="h4" className={navclasses.logo}>
                         simple-notes 
                     </Typography> 
                     <Link to="/login">
-                        <Button style={{ backgroundColor: "#202030", marginRight: "2vh"}} color="inherit" variant="contained">Log in</Button>
+                        <Button style={{ backgroundColor: "#E4B363", marginRight: "2vh", color: "white"}} color="inherit" variant="contained">Log in</Button>
                     </Link>
                     <Link to="/register">
-                        <Button style={{ backgroundColor: "#202030"}} color="inherit" variant="contained">Sign up</Button>
+                        <Button style={{ backgroundColor: "#E4B363", color: "white"}} color="inherit" variant="contained">Sign up</Button>
                     </Link>
                 </Toolbar>
             </AppBar>
