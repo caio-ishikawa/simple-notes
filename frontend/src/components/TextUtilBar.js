@@ -6,6 +6,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import ShareIcon from '@mui/icons-material/Share';
 import SaveIcon from '@mui/icons-material/Save';
 import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { useState, useEffect } from 'react';
 //import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -75,14 +76,24 @@ const TextUtilBar = (props) => {
     // Saves notebook data
     const saveNotebook = () => {
         let data = {
-            email: "caio@caiotest.com",
-            notebook: "caiotest's Notebook",
+            email: props.email,
             note_title: title,
             note: content
         };
         console.log(title);
         Axios.post('http://localhost:3002/post/save_note', data)
         .then((res) => console.log(res));
+    };
+
+    // Deletes current note //
+    const deleteNote = () => {
+        console.log(title)
+        let data = {
+            email: props.email,
+            title: title,
+        };
+        Axios.post('http://localhost:3002/post/remove_note', data)
+            .then((res) => dispatch({ type: 'UPDATE' }));
     };
 
     // Downloads current note as .txt //
@@ -118,6 +129,9 @@ const TextUtilBar = (props) => {
                             </IconButton>
                             <IconButton onClick={saveNotebook} className={classes.button}>
                                 <SaveIcon/>
+                            </IconButton>
+                            <IconButton onClick={deleteNote} className={classes.button}>
+                                <DeleteIcon style={{color: "#D00000"}}/>
                             </IconButton>
                         </ButtonGroup>
                     </Toolbar>

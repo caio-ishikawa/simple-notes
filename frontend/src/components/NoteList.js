@@ -67,7 +67,6 @@ const NoteList = (props) => {
         // API Request to get notes data //
         Axios.post('http://localhost:3002/user/get_all_notes', data)
             .then((res) => {
-                console.log(res.data);
                 let data = res.data;
 
                 // Pushes tags and note titles to separate arrays //
@@ -98,13 +97,15 @@ const NoteList = (props) => {
     // Changes label color //
     const changeLabel = (color) => {
         let data = {
-            email: 'caio@caiotest.com',
+            email: email,
             note: noteTitle,
             color: color
         };
 
         Axios.post('http://localhost:3002/post/add_tag', data)
-            .then((res) => setTag(res.data.tag));
+            .then((res) => {
+                setTag(res.data.tag)
+            });
 
     };
 

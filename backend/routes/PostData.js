@@ -7,7 +7,6 @@ const router        = require('express').Router();
 // SAVES NOTE //
 router.post('/save_note', async (req, res) => {
     const email = req.body.email;
-    const notebookTitle = req.body.notebook;
     const noteTitle = req.body.note_title;
     const note = req.body.note;
 
@@ -33,6 +32,27 @@ router.post('/save_note', async (req, res) => {
             res.send(err);
         }
     }
+});
+
+// DELETES SPECIFIC NOTE //
+router.post('/remove_note', verifyToken, async (req, res) => {
+    const email = req.body.email;
+    const title = req.body.title;
+
+    console.log({ email, title});
+
+    const noteExists = await Note.findOne({ user_email: email, note_title: title});
+    if (!noteExists) {
+        res.send("Note does not exist");
+    }
+
+    try {
+        const deletedNote = await Note.deleteOne({ user_email: email, note_title: title});
+        res.send(deletedNote);
+    } catch(err) {
+        res.send(err);
+    }
+
 });
 
 // CREATES NEW NOTE //

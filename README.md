@@ -31,7 +31,8 @@ module.exports = secrets;
 
 ## TODO:
 
-- Delete note feature.
+- Alerts for deletion.
+- Register flow (currently create user without redirecting).
 - Add filter fucntion for tags.
 - Fix UI spacing on navbar icons.
-- Rework the grid system for better responsiveness.
+- Work on mobile app variant without VIM keybinds (connected to the same backend).

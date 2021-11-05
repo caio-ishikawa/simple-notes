@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 function Main() {
   const history = useHistory();
   const state = history.location.state;
+  console.log("EMAIL FROM MAIN: ", state);
 
     return (
       <div>
