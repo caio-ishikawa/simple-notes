@@ -96,7 +96,7 @@ const MarkdownView = (props) => {
           </div>
           <div className={classes.mainDiv}>
             {reduxEditState === true ? 
-            <div>
+            <div style={{ marginLeft: "2vh", marginTop: "4vh"}}>
               <Editor
               height="90vh"
               defaultLanguage='markdown'

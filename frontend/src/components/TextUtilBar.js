@@ -33,8 +33,13 @@ const useStyles = makeStyles({
         backgroundColor: "#EBEAEB",
     },
     button: {
-        width: "4vh",
-        height: "3vh"
+        marginLeft: "2vh",
+        width: "5vh",
+        height: "4vh"
+    },
+    buttonGroup: {
+        width: "5vh",
+        height: "4vh"
     },
     saveButton: {
         height: "3vh",
@@ -49,6 +54,8 @@ const useStyles = makeStyles({
     },
     buttonGroup: {
         color: "black",
+        height: "4vh",
+        alignItems: "center"
     }
 });
 
@@ -124,13 +131,13 @@ const TextUtilBar = (props) => {
                         </ToggleButton>
                         <div className={classes.sep}></div>
                         <ButtonGroup variant="contained" className={classes.buttonGroup} color="inherit">
-                            <IconButton className={classes.button} onClick={downloadFile}>
+                            <IconButton className={classes.buttonGroup} onClick={downloadFile}>
                                 <DownloadIcon/>
                             </IconButton>
-                            <IconButton onClick={saveNotebook} className={classes.button}>
+                            <IconButton onClick={saveNotebook} className={classes.buttonGroup}>
                                 <SaveIcon/>
                             </IconButton>
-                            <IconButton onClick={deleteNote} className={classes.button}>
+                            <IconButton onClick={deleteNote} className={classes.buttonGroup}>
                                 <DeleteIcon style={{color: "#D00000"}}/>
                             </IconButton>
                         </ButtonGroup>
