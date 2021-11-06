@@ -9,19 +9,17 @@ const useStyles = makeStyles({
     field: {
         backgroundColor: "white",
         borderRadius: "4px",
-        width: "90%",
+        width: "35vh",
     },
     box: {
-        height: "37.5%",
-        backgroundColor: "rgba(0, 0, 0, 0.6)",
+        height: "22vh",
+        backgroundColor: "rgba(10, 37, 51, 0.5)",
         justifyContent: "center",
         position: "relative",
-        width: "25vh",
-        marginRight: "2vh",
-        marginTop:"3vh",
+        width: "35vh",
         padding: "2vh",
         borderRadius: "10px",
-        float: "right"
+        margin: "auto"
 
     },
     vertCenter: {
@@ -44,7 +42,7 @@ const RegisterHome = () => {
                 <TextField size="small" className={classes.field} placeholder="Password"/>
                 <br></br>
                 <br></br>
-                <Button variant="contained" color="inherit">Get started today!</Button>
+                <Button sx={{ width: "35vh", color: "white", backgroundColor: "#E4B363"}} variant="contained" color="inherit">Get started today!</Button>
                 <br></br>
                 <br></br>
                 <Typography style={{color: "white"}} variant="subtitle2">
