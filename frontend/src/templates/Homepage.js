@@ -11,6 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import feat1 from '../assets/feat1.jpg';
 import feat2 from '../assets/feat2.jpg';
 import feat3 from '../assets/feat3.jpg';
+import Footer from '../components/Footer';
 
 
 const useStyles = makeStyles({
@@ -50,6 +51,9 @@ const useStyles = makeStyles({
     },
     featImg: {
         borderRadius: "8px"
+    },
+    separator: {
+        marginBottom: "10vh"
     }
 })
 
@@ -109,6 +113,8 @@ const Homepage = () => {
                     </Grid>
                 </Grid>
             </div>
+            <div className={classes.separator}></div>
+            <Footer/>
         </div>
     )
 };
