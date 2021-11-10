@@ -169,7 +169,7 @@ const NoteList = (props) => {
                         id="combo-box-demo"
                         options={noteList}
                         size="small"
-                        sx={{ margin: "auto" , width: "70%", backgroundColor: "white", marginTop: "2vh", marginBottom: "1vh", marginLeft: "1.5vh" }}
+                        sx={{ margin: "auto" , width: "110%", backgroundColor: "white", marginTop: "2vh", marginBottom: "1vh", marginLeft: "1.5vh" }}
                         renderInput={(params) => <TextField sx={{ fontWeight: "600"}} {...params} 
                         placeholder="Search titles..." />}
                         onChange={(e, value) => handleList(value, noteList.indexOf(value))}
@@ -177,6 +177,7 @@ const NoteList = (props) => {
                     </Grid>
                     <Grid item sm={4} md={4} lg={4}>
                         <IconButton
+                        sx={{ marginTop: "2vh", float: "right" }}
                         id="basic-button"
                         aria-controls="basic-menu"
                         aria-haspopup="true"
