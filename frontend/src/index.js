@@ -68,11 +68,43 @@ const newNoteReducer = (state=false, action) => {
   }
 }
 
+const filterReducer = (state="ALL", action) => {
+  switch(action.type) {
+    case "GREEN":
+      state = '#00AF54'
+      return state;
+    
+    case "RED":
+      state = "#D00000"
+      return state;
+    
+    case "YELLOW":
+      state = "#FFBA08"
+      return state;
+      
+    case "BLUE":
+      state = "#145C9E"
+      return state;
+    
+    case "PINK":
+      state = "#CC59D2"
+      return state;
+    
+    case "ALL":
+      state = "ALL"
+      return state;
+
+    default:
+      return state;
+  }
+}
+
 const allReducers = combineReducers({
   edit: reducer,
   note: noteReducer,
   notebook: notebookReducer,
-  new_note: newNoteReducer
+  new_note: newNoteReducer,
+  filter: filterReducer 
 });
 
 

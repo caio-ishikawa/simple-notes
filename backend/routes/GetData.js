@@ -19,11 +19,20 @@ router.post('/get_data', verifyToken, async (req, res) => {
 router.post('/get_all_notes', async (req, res) => {
     const email = req.body.email;
 
-    const notes = await Note.find({ user_email: email });
-    if (!notes) {
-        res.send("No notes");
+    if (req.body.color != "all") {
+        const notes = await Note.find({ user_email: email, tag: req.body.color});
+        if (!notes) {
+            res.send("No notes with that filter.")
+        } else {
+            res.send(notes);
+        }
     } else {
-        res.send(notes)
+        const notes = await Note.find({ user_email: email });
+        if (!notes) {
+            res.send("No notes");
+        } else {
+            res.send(notes);
+        }
     }
 });
 

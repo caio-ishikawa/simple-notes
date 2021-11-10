@@ -16,6 +16,7 @@ import MenuItem from '@mui/material/MenuItem';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
 
 
 const useStyles = makeStyles({
@@ -37,7 +38,6 @@ const useStyles = makeStyles({
         border: "none"
     },
     noteList: {
-        backgroundColor: "black"
     }
 })
 
@@ -49,11 +49,22 @@ const NoteList = (props) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [index, setIndex] = useState(0);
     const [noteList, setNoteList] = useState([]);
+    const [filterColor, setFilterColor] = useState('');
     const open = Boolean(anchorEl);
     const dispatch = useDispatch();
     const reduxNotebook = useSelector((state) => state.notebook);
     const newNoteRedux = useSelector((state) => state.new_note)
     const email = props.email;
+
+    //FILTER VARIABLES //
+    const [anchorEl2, setAnchorEl2] = useState(null);
+    const open2 = Boolean(anchorEl2);
+    const handleClick2 = (event) => {
+      setAnchorEl2(event.currentTarget);
+    };
+    const handleClose2 = () => {
+      setAnchorEl2(null);
+    };
     
     // Gets notes from API //
     useEffect(() => {
@@ -119,21 +130,106 @@ const NoteList = (props) => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    
+    const changeFilterColor = (color) => {
+        var data = {
+            email: email,
+            color: color
+        };
+       
+        
+        let titles = [];
+        let dates = [];
+        let tags = [];
+
+        // SET RESULT TO TITLE, TAG AND DATE //
+        Axios.post('http://localhost:3002/user/get_all_notes', data)
+            .then((res) => {
+                for (var i = 0; i < res.data.length; i++) {
+                    titles.push(res.data[i].note_title);
+                    dates.push(res.data[i].date_added);
+                    tags.push(res.data[i].tag);
+                };
+                const combinedRes = titles.map((content, idx) => {
+                    return {title: content, tag: tags[idx], date: dates[idx]};
+                });
+                setResults(combinedRes);
+                console.log(combinedRes);
+            });
+    };
 
     return (
         <div className={classes.mainDiv}>
-                <NoteSearch email={email}/>
-                <Autocomplete
-                    className={classes.noteList}
-                    disablePortal
-                    id="combo-box-demo"
-                    options={noteList}
-                    size="small"
-                    sx={{ margin: "auto" , width: "99%", backgroundColor: "white", marginTop: "2vh", marginBottom: "1vh", marginLeft: "1.5vh" }}
-                    renderInput={(params) => <TextField sx={{ fontWeight: "600"}} {...params} 
-                    placeholder="Search titles..." />}
-                    onChange={(e, value) => handleList(value, noteList.indexOf(value))}
-                    />
+            <NoteSearch email={email}/>
+            <Grid container spacing={1}>
+                <Grid item sm={8} md={8} lg={8}>
+                    <Autocomplete
+                        className={classes.noteList}
+                        disablePortal
+                        id="combo-box-demo"
+                        options={noteList}
+                        size="small"
+                        sx={{ margin: "auto" , width: "70%", backgroundColor: "white", marginTop: "2vh", marginBottom: "1vh", marginLeft: "1.5vh" }}
+                        renderInput={(params) => <TextField sx={{ fontWeight: "600"}} {...params} 
+                        placeholder="Search titles..." />}
+                        onChange={(e, value) => handleList(value, noteList.indexOf(value))}
+                        />
+                    </Grid>
+                    <Grid item sm={4} md={4} lg={4}>
+                        <IconButton
+                        id="basic-button"
+                        aria-controls="basic-menu"
+                        aria-haspopup="true"
+                        aria-expanded={open2 ? 'true' : undefined}
+                        onClick={handleClick2}
+                        >
+                            <FilterAltIcon/>
+                        </IconButton>
+                        <Menu
+                        id="basic-menu"
+                        anchorEl={anchorEl2}
+                        open={open2}
+                        onClose={handleClose2}
+                        >
+                            <MenuItem onClick={() => changeFilterColor("all")}>
+                                <Box sx={{ width: "2vh", height: "2vh", backgroundColor: "black"}}
+                                >
+                                </Box>
+                                <p>ALL</p>
+                            </MenuItem>
+                            <MenuItem onClick={() => changeFilterColor("#00AF54")}>
+                                <Box sx={{ width: "2vh", height: "2vh", backgroundColor: "#00AF54"}}
+                                >
+                                </Box>
+                                <p>green</p>
+                            </MenuItem>
+                            <MenuItem onClick={() => changeFilterColor("#D00000")}>
+                                <Box sx={{ width: "2vh", height: "2vh", backgroundColor: "#D00000"}}
+                                >
+                                </Box>
+                                <p>red</p>
+                            </MenuItem>
+                            <MenuItem onClick={() => changeFilterColor("#FFBA08")}>
+                                <Box sx={{ width: "2vh", height: "2vh", backgroundColor: "#FFBA08"}}
+                                >
+                                </Box>
+                                <p>yellow</p>
+                            </MenuItem>
+                            <MenuItem onClick={() => changeFilterColor("#145C9E")}>
+                                <Box sx={{ width: "2vh", height: "2vh", backgroundColor: "#145C9E"}}
+                                >
+                                </Box>
+                                <p>blue</p>
+                            </MenuItem>
+                            <MenuItem onClick={() => changeFilterColor("#CC59D2")}>
+                                <Box sx={{ width: "2vh", height: "2vh", backgroundColor: "#CC59D2"}}
+                                >
+                                </Box>
+                                <p>pink</p>
+                            </MenuItem>
+                        </Menu>
+                    </Grid>
+                </Grid>
                 <List component="nav" aria-label="test" className={classes.list}>
                     {results.map((note, idx) => {
                         return(
