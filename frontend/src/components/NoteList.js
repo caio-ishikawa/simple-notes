@@ -70,6 +70,7 @@ const NoteList = (props) => {
     useEffect(() => {
         let data = {
             email: email,
+            color: 'all'
         };
         let response = [];
         let tags = [];
@@ -131,13 +132,12 @@ const NoteList = (props) => {
         setAnchorEl(null);
     };
     
+    // Sets the list according to selected filter //
     const changeFilterColor = (color) => {
         var data = {
             email: email,
-            color: color
+            color: color 
         };
-       
-        
         let titles = [];
         let dates = [];
         let tags = [];

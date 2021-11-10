@@ -18,6 +18,7 @@ router.post('/get_data', verifyToken, async (req, res) => {
 // RETURNS ALL NOTES //
 router.post('/get_all_notes', async (req, res) => {
     const email = req.body.email;
+    console.log(req.body.color)
 
     if (req.body.color != "all") {
         const notes = await Note.find({ user_email: email, tag: req.body.color});
