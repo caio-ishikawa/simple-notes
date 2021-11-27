@@ -65,11 +65,11 @@ const Register = () => {
                                 simple-notes
                             </Typography>
                         </div>
+                        <TextField className={classes.textBox}  variant="standard" placeholder="email" onChange={(e) => getEmail(e)}/>
                         <TextField className={classes.textBox} variant="standard" placeholder="username" onChange={(e) => getUsername(e)}/>
                         <br></br>
-                        <TextField className={classes.textBox}  variant="standard" placeholder="password" onChange={(e) => getPassword(e)}/>
+                        <TextField type="password" className={classes.textBox}  variant="standard" placeholder="password" onChange={(e) => getPassword(e)}/>
                         <br></br>
-                        <TextField className={classes.textBox}  variant="standard" placeholder="email" onChange={(e) => getEmail(e)}/>
 
                         <br></br>
                         <br></br>

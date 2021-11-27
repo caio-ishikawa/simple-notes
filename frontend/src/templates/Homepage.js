@@ -70,13 +70,13 @@ const Homepage = () => {
                     <Grid item xs={12} sm={12} md={12} lg={12}>
                         <Typography variant="h4" sx={{ fontWeight: "400", marginTop: "5vh"}} align="center">YOUR NOTES - ANYTIME, ANYWHERE</Typography>
                         <br></br>
-                        <Typography align="left" variant="h6" sx={{ fontWeight: "400"}}>Note-taking made easy with Markdown and VIM keybinds, for ultimate speed and reliability. Either save it to your account, or download locally to ensure access in any device or any place.</Typography>
+                        <Typography align="center" variant="h6" sx={{ fontWeight: "400"}}>Note-taking made easy with Markdown and VIM keybinds, for ultimate speed and reliability. Either save it to your account, or download locally to ensure access in any device or any place.</Typography>
                     </Grid>
-                    <Grid item xs={12} sm={12} md={12} lg={12}>
-                        <img src={sc} width="400" className={classes.pic}/>
+                    <Grid container sx={{ justifyContent: "center", marginBottom: "-10vh" }} item xs={12} sm={12} md={12} lg={12}>
+                        <img src={sc} style={{ maxHeight: "50%", width: "70%", overflow: "none", textAlign: "center", objectFit: "cover" }} className={classes.pic}/>
                     </Grid>
                     <Grid item xs={12} sm={12} md={12} lg={12} style={{textAlign: "center"}}>
-                        <Button sx={{ backgroundColor: "#E4B363", color: "white", marginTop: "5vh"}} variant="contained">try it out today</Button>
+                        <Button sx={{ backgroundColor: "#E4B363", color: "white", }} variant="contained">try it out today</Button>
                     </Grid>
                     <Grid item xs={12} sm={12} md={12} lg={12} style={{textAlign: "center", marginTop: "10vh"}}>
                         <IconButton color="inherit">

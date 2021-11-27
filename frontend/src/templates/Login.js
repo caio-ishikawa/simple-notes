@@ -69,7 +69,7 @@ const Login = () => {
                             </Typography>
                         </div>
                         <TextField className={classes.textBox} variant="standard" placeholder="Username" onChange={(e) => getUsername(e)}/>
-                        <TextField className={classes.textBox} variant="standard" placeholder="Password" onChange={(e) => getPassword(e)}/>
+                        <TextField type="password" className={classes.textBox} variant="standard" placeholder="Password" onChange={(e) => getPassword(e)}/>
                         <br></br>
                         <br></br>
                         <Button variant="contained" color="inherit" className={classes.submitButton} onClick={submitData}>Log in</Button>
